@@ -1,6 +1,7 @@
 package lk.ijse.hostel_management.service;
 
 import lk.ijse.hostel_management.service.custom.impl.RoomServiceImpl;
+import lk.ijse.hostel_management.service.custom.impl.StudentServiceImpl;
 import lk.ijse.hostel_management.service.custom.impl.UserServiceImpl;
 
 public class ServiceFactory {
@@ -17,7 +18,7 @@ public class ServiceFactory {
     }
 
     public enum serviceTypes{
-        Room,user
+        Room,user,student
 
     }
     public <T extends SuperService>T getService(serviceTypes serviceTypes){
@@ -27,6 +28,9 @@ public class ServiceFactory {
 
             case user:
                 return (T)new UserServiceImpl();
+
+            case student:
+                return (T)new StudentServiceImpl();
 
             default:
                 return null;

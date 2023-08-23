@@ -10,5 +10,6 @@ public interface CrudRepository<T,ID,Idd> extends SuperRepository{
     boolean delete(T t);
     List<T> getAll();
     T searchById(Idd id);
+    T searchIdByString(ID id);
 
 }

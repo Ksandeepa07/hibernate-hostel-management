@@ -26,6 +26,9 @@ public class DashboardController {
     private Button resevationBtn;
 
     @FXML
+    private Button managestudentsBtn;
+
+    @FXML
     void manageRoomBtnOnAction(ActionEvent event) {
         StageController.changeScene("/view/roomForm.fxml",ancPane);
 
@@ -34,6 +37,12 @@ public class DashboardController {
     @FXML
     void resevationBtnOnAction(ActionEvent event) {
 
+
+    }
+
+    @FXML
+    void managestudentsBtnOnAction(ActionEvent event) {
+        StageController.changeScene("/view/studentForm.fxml",ancPane);
 
     }
 

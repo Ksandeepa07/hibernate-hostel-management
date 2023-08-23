@@ -54,6 +54,11 @@ public class RoomRepositoryimpl implements RoomRepository {
         return null;
     }
 
+    @Override
+    public Room searchIdByString(String s) {
+        return null;
+    }
+
 
     @Override
     public void setSession(Session session) {

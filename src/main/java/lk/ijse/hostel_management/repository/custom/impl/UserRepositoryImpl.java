@@ -1,5 +1,6 @@
 package lk.ijse.hostel_management.repository.custom.impl;
 
+import lk.ijse.hostel_management.entity.Student;
 import lk.ijse.hostel_management.entity.User;
 import lk.ijse.hostel_management.repository.custom.UserRepository;
 import org.hibernate.Session;
@@ -35,6 +36,11 @@ public class UserRepositoryImpl implements UserRepository {
     public User searchById(Integer id) {
         User user=session.get(User.class,id);
         return user;
+    }
+
+    @Override
+    public User searchIdByString(String s) {
+        return null;
     }
 
 

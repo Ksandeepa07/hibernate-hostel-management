@@ -1,6 +1,7 @@
 package lk.ijse.hostel_management.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Student {
     private String contact;
 
     @Column(name = "dob")
-    private Date dob;
+    private LocalDate dob;
 
     @Column(name = "gender")
     private String gender;
@@ -36,7 +37,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(String studentId, String studentName, String address, String contact, Date dob, String gender) {
+    public Student(String studentId, String studentName, String address, String contact, LocalDate dob, String gender) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.address = address;
@@ -77,11 +78,11 @@ public class Student {
         this.contact = contact;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 

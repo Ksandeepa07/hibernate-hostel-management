@@ -1,6 +1,8 @@
-package lk.ijse.hostel_management.view.tdm;
+package lk.ijse.hostel_management.dto;
 
-public class StudentTM {
+import java.util.Date;
+
+public class StudentDTO {
     private String studentId;
     private String name;
     private String address;
@@ -8,10 +10,10 @@ public class StudentTM {
     private String dob;
     private String gender;
 
-    public StudentTM() {
+    public StudentDTO() {
     }
 
-    public StudentTM(String studentId, String name, String address, String conatct, String dob, String gender) {
+    public StudentDTO(String studentId, String name, String address, String conatct, String dob, String gender) {
         this.studentId = studentId;
         this.name = name;
         this.address = address;

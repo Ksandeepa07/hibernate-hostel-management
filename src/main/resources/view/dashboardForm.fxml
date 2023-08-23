@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="ancPane" prefHeight="902.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.DashboardController">
    <children>
       <Button fx:id="resevationBtn" layoutX="474.0" layoutY="721.0" mnemonicParsing="false" onAction="#resevationBtnOnAction" prefHeight="75.0" prefWidth="165.0" style="-fx-background-color: #7FFF00;" text="Make a resevation">
@@ -13,6 +12,11 @@
          </font>
       </Button>
       <Button fx:id="manageRoomBtn" layoutX="791.0" layoutY="721.0" mnemonicParsing="false" onAction="#manageRoomBtnOnAction" prefHeight="75.0" prefWidth="151.0" style="-fx-background-color: #00FFFF;" text="Manage rooms">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="managestudentsBtn" layoutX="1062.0" layoutY="721.0" mnemonicParsing="false" onAction="#managestudentsBtnOnAction" prefHeight="75.0" prefWidth="151.0" style="-fx-background-color: red;" text="Manage Students">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
