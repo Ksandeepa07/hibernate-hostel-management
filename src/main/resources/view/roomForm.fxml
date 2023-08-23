@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="ancPane" prefHeight="902.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.RoomController">
+   <children>
+      <TextField fx:id="roomTypeIdTxt" layoutX="314.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" />
+      <TextField fx:id="typeTxt" layoutX="314.0" layoutY="372.0" prefHeight="32.0" prefWidth="236.0" />
+      <TextField fx:id="quantityTxt" layoutX="743.0" layoutY="372.0" prefHeight="32.0" prefWidth="236.0" />
+      <TextField fx:id="keyMoneyTxt" layoutX="743.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" />
+      <Label layoutX="75.0" layoutY="44.0" text="Manage Rooms" textFill="SLATEBLUE">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="314.0" layoutY="223.0" text="Room Type Id * ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="314.0" layoutY="339.0" text=" Type * ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="743.0" layoutY="339.0" text="Quantity *">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="743.0" layoutY="223.0" text="Key Money *">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView layoutX="111.0" layoutY="551.0" prefHeight="335.0" prefWidth="1106.0">
+        <columns>
+          <TableColumn fx:id="roomTypeIdCol" prefWidth="214.0" text="Room Type Id" />
+          <TableColumn fx:id="tupeCOl" prefWidth="340.0" text="Type" />
+            <TableColumn fx:id="keyMpneyCol" prefWidth="342.0" text="Key Money" />
+            <TableColumn fx:id="quantityCol" prefWidth="246.0" text="Quantity" />
+        </columns>
+      </TableView>
+      <JFXButton layoutX="1040.0" layoutY="263.0" onAction="#saveBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #FF0000;" text="Save" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="1040.0" layoutY="372.0" onAction="#deleteBtnOnACtion" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #2E8B57;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="1040.0" layoutY="320.0" onAction="#updateBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #4169E1;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="14.0" layoutY="848.0" onAction="#backBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: black;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="ancpane" prefHeight="518.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.UserController">
+   <children>
+      <TextField fx:id="usernameTxt" layoutX="439.0" layoutY="178.0" prefHeight="24.0" prefWidth="196.0" />
+      <TextField fx:id="passwordTxt" layoutX="439.0" layoutY="257.0" prefHeight="24.0" prefWidth="196.0" />
+      <Label layoutX="439.0" layoutY="150.0" text="Username *">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="439.0" layoutY="233.0" text="Password *">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="loginBtn" buttonType="RAISED" layoutX="550.0" layoutY="312.0" onAction="#loginBtnOnAction" prefHeight="24.0" prefWidth="82.0" style="-fx-background-color: Brown Swatch;" text="Login" textFill="#ebe1e1">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
