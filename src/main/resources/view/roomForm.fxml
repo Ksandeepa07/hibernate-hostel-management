@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="ancPane" prefHeight="902.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.RoomController">
    <children>
       <TextField fx:id="roomTypeIdTxt" layoutX="314.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" />
@@ -40,7 +39,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TableView layoutX="111.0" layoutY="551.0" prefHeight="335.0" prefWidth="1106.0">
+      <TableView fx:id="roomTbl" layoutX="111.0" layoutY="551.0" onMouseClicked="#tblOnAction" prefHeight="335.0" prefWidth="1106.0">
         <columns>
           <TableColumn fx:id="roomTypeIdCol" prefWidth="214.0" text="Room Type Id" />
           <TableColumn fx:id="tupeCOl" prefWidth="340.0" text="Type" />

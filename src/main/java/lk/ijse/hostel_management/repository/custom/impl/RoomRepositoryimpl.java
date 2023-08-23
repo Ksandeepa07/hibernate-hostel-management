@@ -4,7 +4,9 @@ import lk.ijse.hostel_management.entity.Room;
 import lk.ijse.hostel_management.repository.custom.RoomRepository;
 import org.hibernate.Session;
 
+import javax.persistence.Id;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RoomRepositoryimpl implements RoomRepository {
     private Session session;
@@ -22,18 +24,36 @@ public class RoomRepositoryimpl implements RoomRepository {
 
     @Override
     public boolean update(Room room) {
-        return false;
+        session.update(room);
+        return true;
+
+
     }
 
     @Override
     public boolean delete(Room room) {
-        return false;
+        session.delete(room);
+        return true;
     }
 
     @Override
-    public ArrayList<Room> getAll() {
+    public List<Room> getAll() {
+        try{
+             List <Room> rooms=session.createQuery("FROM Room",Room.class).getResultList();
+             return rooms;
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
         return null;
     }
+
+    @Override
+    public Room searchById(Integer id) {
+        return null;
+    }
+
 
     @Override
     public void setSession(Session session) {
