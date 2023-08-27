@@ -1,8 +1,10 @@
 package lk.ijse.hostel_management.repository.custom.impl;
 
 import lk.ijse.hostel_management.entity.Room;
+import lk.ijse.hostel_management.entity.User;
 import lk.ijse.hostel_management.repository.custom.RoomRepository;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import javax.persistence.Id;
 import java.util.ArrayList;
@@ -11,20 +13,21 @@ import java.util.List;
 public class RoomRepositoryimpl implements RoomRepository {
     private Session session;
     @Override
-    public String save(Room room) {
+    public boolean save(Room room) {
         try{
-            return (String) session.save(room);
+             session.save(room);
+             return true;
         }catch (Exception e){
             e.printStackTrace();
 
         }
-        return null;
+        return false;
 
     }
 
     @Override
     public boolean update(Room room) {
-        session.update(room);
+        session.merge(room);
         return true;
 
 
@@ -55,8 +58,9 @@ public class RoomRepositoryimpl implements RoomRepository {
     }
 
     @Override
-    public Room searchIdByString(String s) {
-        return null;
+    public Room searchIdByString(String id) {
+        Room room=session.get(Room.class,id);
+        return room;
     }
 
 
@@ -64,5 +68,12 @@ public class RoomRepositoryimpl implements RoomRepository {
     public void setSession(Session session) {
         this.session=session;
 
+    }
+
+    @Override
+    public List<String> loadRoomTypeIds() {
+       Query<String> query= session.createQuery("SELECT r.id FROM Room r", String.class);
+       List<String> list=query.getResultList();
+       return list;
     }
 }

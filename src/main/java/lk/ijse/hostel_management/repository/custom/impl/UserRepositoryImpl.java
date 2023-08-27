@@ -13,8 +13,8 @@ public class UserRepositoryImpl implements UserRepository {
     private Session session;
 
     @Override
-    public String save(User user) {
-        return null;
+    public boolean save(User user) {
+        return false;
     }
 
     @Override

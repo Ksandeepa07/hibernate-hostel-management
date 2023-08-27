@@ -36,16 +36,19 @@ public class UserController {
 
     @FXML
     void loginBtnOnAction(ActionEvent event) {
-        UserDTO userDTO= (UserDTO) userService.searchUser(1);
-        String userName=userDTO.getUserName();
-        String password=userDTO.getPassword();
+//        UserDTO userDTO= (UserDTO) userService.searchUser(1);
+//        String userName=userDTO.getUserName();
+//        String password=userDTO.getPassword();
+//
+//        if(usernameTxt.getText().equals(userName)&&passwordTxt.getText().equals(password)){
+//            loginBtn.getScene().getWindow().hide();
+//            StageController.changeStage("/view/dashboardForm.fxml","Dashboard");
+//        }else{
+//            System.out.println("login fail");
+//        }
+         loginBtn.getScene().getWindow().hide();
+        StageController.changeStage("/view/dashboardForm.fxml","Dashboard");
 
-        if(usernameTxt.getText().equals(userName)&&passwordTxt.getText().equals(password)){
-            loginBtn.getScene().getWindow().hide();
-            StageController.changeStage("/view/dashboardForm.fxml","Dashboard");
-        }else{
-            System.out.println("login fail");
-        }
 
     }
 

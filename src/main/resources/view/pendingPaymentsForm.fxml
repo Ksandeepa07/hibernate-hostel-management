@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="ancPane" prefHeight="902.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.PendingPaymentsController">
+   <children>
+      <TableView fx:id="pendingPaymentsTbl" layoutX="120.0" layoutY="306.0" onMouseClicked="#tblOnAction" prefHeight="532.0" prefWidth="1106.0">
+         <columns>
+            <TableColumn fx:id="reservationIdCol" prefWidth="214.0" text="Reservation Id" />
+            <TableColumn fx:id="studentIdCol" prefWidth="257.0" text="Student Id" />
+            <TableColumn fx:id="studentNameCol" prefWidth="318.0" text="Student Name" />
+            <TableColumn fx:id="contactCol" prefWidth="316.0" text="Contact" />
+         </columns>
+      </TableView>
+      <JFXButton fx:id="backBtn" layoutX="16.0" layoutY="848.0" onAction="#backBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: black;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane prefHeight="182.0" prefWidth="1332.0" style="-fx-background-color: black;" />
+      <Label layoutX="100.0" layoutY="43.0" prefHeight="88.0" prefWidth="573.0" text="Pending Payments" textFill="LIGHTSLATEGRAY">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

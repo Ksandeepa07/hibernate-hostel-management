@@ -1,11 +1,19 @@
 package lk.ijse.hostel_management.entity;
 
+import lk.ijse.hostel_management.dto.ReservationDTO;
 import lk.ijse.hostel_management.embedded.ReservationPK;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "reservation")
 public class Reservation implements Serializable {
@@ -18,88 +26,24 @@ public class Reservation implements Serializable {
     private ReservationPK reservationPK;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id",insertable = false,updatable = false)
     private Student studentId;
 
     @ManyToOne
-    @JoinColumn(name = "room_type_id")
+    @JoinColumn(name = "room_type_id",insertable = false,updatable = false)
     private Room roomId;
 
     @Column(name = "status")
     private String status;
 
-    public Reservation() {
-    }
 
-    public Reservation(String reservationId, ReservationPK reservationPK, Date date, Student studentId, Room roomId, String status) {
-        this.reservationId = reservationId;
-        this.reservationPK = reservationPK;
-        this.date = date;
-        this.studentId = studentId;
-        this.roomId = roomId;
-        this.status = status;
-    }
-
-    public String getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(String reservationId) {
-        this.reservationId = reservationId;
-    }
-
-    public ReservationPK getReservationPK() {
-        return reservationPK;
-    }
-
-    public void setReservationPK(ReservationPK reservationPK) {
-        this.reservationPK = reservationPK;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Student getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Student studentId) {
-        this.studentId = studentId;
-    }
-
-    public Room getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Room roomId) {
-        this.roomId = roomId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "reservationId='" + reservationId + '\'' +
-                ", reservationPK=" + reservationPK +
-                ", date=" + date +
-                ", studentId=" + studentId +
-                ", roomId=" + roomId +
-                ", status='" + status + '\'' +
-                '}';
+    public Reservation(String resId, LocalDate now, ReservationPK reservationPK, String status) {
+        this.reservationId=resId;
+        this.reservationPK=reservationPK;
+        this.date=now;
+        this.status=status;
     }
 }

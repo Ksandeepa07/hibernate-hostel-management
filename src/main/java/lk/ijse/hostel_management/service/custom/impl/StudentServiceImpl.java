@@ -20,13 +20,13 @@ public class StudentServiceImpl implements StudentService<StudentDTO,String,Inte
     StudentRepository repository= RepositoryFactory.getInstance().getRepostory(RepositoryFactory.repositoryTypes.student);
 
     @Override
-    public String saveStudent(StudentDTO studentDTO) {
+    public boolean saveStudent(StudentDTO studentDTO) {
         Session session= SessionFactoryConfig.getInstance().getSession();
         Transaction transaction=session.beginTransaction();
 
         try {
             repository.setSession(session);
-            String isSaved=repository.save(new Student(
+            boolean isSaved=repository.save(new Student(
                     studentDTO.getStudentId(),
                     studentDTO.getName(),
                     studentDTO.getAddress(),
@@ -43,19 +43,68 @@ public class StudentServiceImpl implements StudentService<StudentDTO,String,Inte
         }catch (Exception e){
             transaction.rollback();
             session.close();
-            return null;
+            return false;
 
         }
     }
 
     @Override
     public boolean updateStudent(StudentDTO studentDTO) {
-        return false;
+        Session session= SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        try {
+            repository.setSession(session);
+            boolean isUpDated=repository.update(new Student(
+                    studentDTO.getStudentId(),
+                    studentDTO.getName(),
+                    studentDTO.getAddress(),
+                    studentDTO.getConatct(),
+                    LocalDate.parse(studentDTO.getDob()),
+                    studentDTO.getGender()
+
+            ));
+
+            transaction.commit();
+            session.close();
+            return isUpDated;
+
+        }catch (Exception e){
+            transaction.rollback();
+            session.close();
+            return false;
+
+        }
+
     }
 
     @Override
     public boolean deleteStudent(StudentDTO studentDTO) {
-        return false;
+        Session session= SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        try {
+            repository.setSession(session);
+            boolean isDeletd=repository.delete(new Student(
+                    studentDTO.getStudentId(),
+                    studentDTO.getName(),
+                    studentDTO.getAddress(),
+                    studentDTO.getConatct(),
+                    LocalDate.parse(studentDTO.getDob()),
+                    studentDTO.getGender()
+
+            ));
+
+            transaction.commit();
+            session.close();
+            return isDeletd;
+
+        }catch (Exception e){
+            transaction.rollback();
+            session.close();
+            return false;
+
+        }
     }
 
     @Override

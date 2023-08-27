@@ -16,22 +16,26 @@ public class RoomServiceImpl implements RoomService<RoomDTO, String> {
     RoomRepository repository = RepositoryFactory.getInstance().getRepostory(RepositoryFactory.repositoryTypes.room);
 
     @Override
-    public String saveRoom(RoomDTO roomDTO) {
+    public boolean saveRoom(RoomDTO roomDTO) {
         Session session= SessionFactoryConfig.getInstance().getSession();
         Transaction transaction=session.beginTransaction();
         try{
             repository.setSession(session);
-            String saved=repository.save(new Room(roomDTO.getRoomTypeId()
-                    , roomDTO.getType()
-                    , roomDTO.getKeyMoney()
-                    , roomDTO.getQty()));
+            boolean saved=repository.save(new Room(
+                    roomDTO.getRoomTypeId(),
+                    roomDTO.getType(),
+                    roomDTO.getKeyMoney(),
+                    roomDTO.getQty()
+                    )
+
+            );
             transaction.commit();
             session.close();
             return saved;
         }catch (Exception e){
             transaction.rollback();
             session.close();
-            return null;
+            return false;
 
         }
 

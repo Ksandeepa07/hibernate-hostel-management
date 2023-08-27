@@ -3,25 +3,29 @@ package lk.ijse.hostel_management.repository.custom.impl;
 import lk.ijse.hostel_management.entity.Student;
 import lk.ijse.hostel_management.repository.custom.StudentRepository;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class StudentRepositoryImpl implements StudentRepository {
     private Session session;
     @Override
-    public String save(Student student) {
-        return  (String) session.save(student);
+    public boolean save(Student student) {
+        session.save(student);
+        return true;
 
     }
 
     @Override
     public boolean update(Student student) {
-        return false;
+        session.update(student);
+        return true;
     }
 
     @Override
     public boolean delete(Student student) {
-        return false;
+        session.delete(student);
+        return true;
     }
 
     @Override
@@ -44,5 +48,12 @@ public class StudentRepositoryImpl implements StudentRepository {
     public void setSession(Session session) {
         this.session=session;
 
+    }
+
+    @Override
+    public List<String> loadStudentIds() {
+        Query<String> query=session.createQuery("SELECT s.id FROM Student s", String.class);
+        List<String> list=query.getResultList();
+        return list;
     }
 }

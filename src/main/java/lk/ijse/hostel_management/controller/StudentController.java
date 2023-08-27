@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,20 +74,36 @@ public class StudentController {
     private TableView<StudentTM> studentTbl;
 
     @FXML
+    private JFXButton backBtn;
+
+    @FXML
     void backBtnOnAction(ActionEvent event) {
-        StageController.changeStage("/view/dashboardForm.fxml","Dashboard");
+        StageController.changeScene("/view/dashboardForm.fxml",ancPane);
 
     }
 
     @FXML
     void deleteBtnOnACtion(ActionEvent event) {
+       boolean idDeleted=service.deleteStudent(new StudentDTO(
+                studentIdTxt.getText(),
+                nameTxt.getText(),
+                addressTxt.getText(),
+                contactTxt.getText(),
+                dobTxt.getValue().toString(),
+                genderCmb.getSelectionModel().getSelectedItem()));
+
+        if(idDeleted){
+            getAll();
+        }else{
+            System.out.println("error");
+        }
 
     }
 
     @FXML
     void saveBtnOnAction(ActionEvent event) {
 
-        String isSaved=service.saveStudent(new StudentDTO(
+        boolean isSaved=service.saveStudent(new StudentDTO(
                 studentIdTxt.getText(),
                 nameTxt.getText(),
                 addressTxt.getText(),
@@ -95,9 +112,9 @@ public class StudentController {
                 genderCmb.getSelectionModel().getSelectedItem()
         ));
 
-        if (isSaved.equals(studentIdTxt.getText())) {
-//            getAll();
-            System.out.println("saved");
+        if (isSaved) {
+            getAll();
+
         } else {
             System.out.println("not saved");
         }
@@ -121,6 +138,21 @@ public class StudentController {
 
     @FXML
     void updateBtnOnAction(ActionEvent event) {
+
+        boolean isUpdated=service.updateStudent(
+                new StudentDTO(
+                        studentIdTxt.getText(),
+                        nameTxt.getText(),
+                        addressTxt.getText(),
+                        contactTxt.getText(),
+                        dobTxt.getValue().toString(),
+                        genderCmb.getSelectionModel().getSelectedItem()));
+
+        if(isUpdated){
+            getAll();
+        }else {
+            System.out.println("not");
+        }
 
     }
 

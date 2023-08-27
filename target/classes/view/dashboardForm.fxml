@@ -1,25 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="ancPane" prefHeight="902.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.DashboardController">
    <children>
-      <Button fx:id="resevationBtn" layoutX="474.0" layoutY="721.0" mnemonicParsing="false" onAction="#resevationBtnOnAction" prefHeight="75.0" prefWidth="165.0" style="-fx-background-color: #7FFF00;" text="Make a resevation">
+      <AnchorPane layoutY="-3.0" prefHeight="217.0" prefWidth="1332.0" style="-fx-background-color: black;" />
+      <Label fx:id="dateLbl" alignment="CENTER_RIGHT" layoutX="983.0" layoutY="36.0" prefHeight="55.0" prefWidth="305.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="31.0" />
+         </font>
+      </Label>
+      <Label fx:id="timeLbl" alignment="CENTER_RIGHT" layoutX="1096.0" layoutY="103.0" prefHeight="39.0" prefWidth="192.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="type1" alignment="CENTER" layoutX="34.0" layoutY="31.0" prefHeight="152.0" prefWidth="158.0" style="-fx-background-color: #778899; -fx-background-radius: 0 50 50 50;" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="type2" alignment="CENTER" layoutX="276.0" layoutY="31.0" prefHeight="152.0" prefWidth="158.0" style="-fx-background-color: #778899; -fx-background-radius: 0 50 50 50;" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="type3" alignment="CENTER" layoutX="518.0" layoutY="31.0" prefHeight="152.0" prefWidth="158.0" style="-fx-background-color: #778899; -fx-background-radius: 0 50 50 50;" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="type4" alignment="CENTER" layoutX="763.0" layoutY="32.0" prefHeight="152.0" prefWidth="158.0" style="-fx-background-color: #778899; -fx-background-radius: 0 50 50 50;" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="backBtn" layoutX="41.0" layoutY="858.0" onAction="#backBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: black;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="manageRoomBtn" buttonType="RAISED" layoutX="41.0" layoutY="477.0" onAction="#manageRoomBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Manage Rooms" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
-      </Button>
-      <Button fx:id="manageRoomBtn" layoutX="791.0" layoutY="721.0" mnemonicParsing="false" onAction="#manageRoomBtnOnAction" prefHeight="75.0" prefWidth="151.0" style="-fx-background-color: #00FFFF;" text="Manage rooms">
+      </JFXButton>
+      <JFXButton fx:id="pendingPapymentsBtn" buttonType="RAISED" layoutX="41.0" layoutY="736.0" onAction="#pendingPapymentsBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Pending Payments" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
-      </Button>
-      <Button fx:id="managestudentsBtn" layoutX="1062.0" layoutY="721.0" mnemonicParsing="false" onAction="#managestudentsBtnOnAction" prefHeight="75.0" prefWidth="151.0" style="-fx-background-color: red;" text="Manage Students">
+      </JFXButton>
+      <JFXButton fx:id="managestudentsBtn" buttonType="RAISED" layoutX="41.0" layoutY="602.0" onAction="#managestudentsBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Manage Students" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
-      </Button>
+      </JFXButton>
+      <JFXButton fx:id="resevationBtn" buttonType="RAISED" layoutX="41.0" layoutY="347.0" onAction="#resevationBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Make Reservation" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

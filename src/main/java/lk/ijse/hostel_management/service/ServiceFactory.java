@@ -1,8 +1,6 @@
 package lk.ijse.hostel_management.service;
 
-import lk.ijse.hostel_management.service.custom.impl.RoomServiceImpl;
-import lk.ijse.hostel_management.service.custom.impl.StudentServiceImpl;
-import lk.ijse.hostel_management.service.custom.impl.UserServiceImpl;
+import lk.ijse.hostel_management.service.custom.impl.*;
 
 public class ServiceFactory {
     private static ServiceFactory serviceFactory;
@@ -18,7 +16,7 @@ public class ServiceFactory {
     }
 
     public enum serviceTypes{
-        Room,user,student
+        Room,user,student,reservation,pendingPayments
 
     }
     public <T extends SuperService>T getService(serviceTypes serviceTypes){
@@ -31,6 +29,12 @@ public class ServiceFactory {
 
             case student:
                 return (T)new StudentServiceImpl();
+
+            case reservation:
+                return (T)new ReservationServiceImpl();
+
+            case pendingPayments:
+                return (T)new PendingPaymentsServiceImpl();
 
             default:
                 return null;

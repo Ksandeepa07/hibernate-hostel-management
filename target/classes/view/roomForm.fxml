@@ -14,11 +14,6 @@
       <TextField fx:id="typeTxt" layoutX="314.0" layoutY="372.0" prefHeight="32.0" prefWidth="236.0" />
       <TextField fx:id="quantityTxt" layoutX="743.0" layoutY="372.0" prefHeight="32.0" prefWidth="236.0" />
       <TextField fx:id="keyMoneyTxt" layoutX="743.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" />
-      <Label layoutX="75.0" layoutY="44.0" text="Manage Rooms" textFill="SLATEBLUE">
-         <font>
-            <Font name="System Bold" size="48.0" />
-         </font>
-      </Label>
       <Label layoutX="314.0" layoutY="223.0" text="Room Type Id * ">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -62,10 +57,19 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="14.0" layoutY="848.0" onAction="#backBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: black;" text="Back" textFill="WHITE">
+      <JFXButton fx:id="backBtn" layoutX="14.0" layoutY="848.0" onAction="#backBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: black;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </JFXButton>
+      <AnchorPane layoutX="-2.0" prefHeight="182.0" prefWidth="1332.0" style="-fx-background-color: black;">
+         <children>
+            <Label layoutX="95.0" layoutY="43.0" prefHeight="88.0" prefWidth="499.0" text="Manage Rooms" textFill="LIGHTSLATEGRAY">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

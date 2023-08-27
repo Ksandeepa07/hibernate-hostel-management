@@ -1,5 +1,6 @@
 package lk.ijse.hostel_management.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,6 +52,9 @@ public class RoomController {
     private TextField typeTxt;
 
     @FXML
+    private JFXButton backBtn;
+
+    @FXML
     void deleteBtnOnACtion(ActionEvent event) {
 
         boolean isdeleted=roomService.deleteRoom(new RoomDTO(roomTypeIdTxt.getText()
@@ -69,12 +73,12 @@ public class RoomController {
     @FXML
     void saveBtnOnAction(ActionEvent event) {
 
-        String isSaved = roomService.saveRoom(new RoomDTO(roomTypeIdTxt.getText()
+        boolean isSaved = roomService.saveRoom(new RoomDTO(roomTypeIdTxt.getText()
                 , typeTxt.getText()
                 , keyMoneyTxt.getText()
                 , Integer.parseInt(quantityTxt.getText())));
 
-        if (isSaved.equals(roomTypeIdTxt.getText())) {
+        if (isSaved) {
             getAll();
             System.out.println("saved");
         } else {

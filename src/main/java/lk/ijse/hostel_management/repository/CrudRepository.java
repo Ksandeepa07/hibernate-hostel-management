@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface CrudRepository<T,ID,Idd> extends SuperRepository{
 
-    String save(T t);
+    boolean save(T t);
     boolean update(T t);
     boolean delete(T t);
     List<T> getAll();
