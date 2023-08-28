@@ -91,6 +91,7 @@ public class ReservationController {
 
         if (isSaved){
             getAll();
+            generateNextResvationId();
             System.out.println("saved");
         }else{
             System.out.println("not saved");

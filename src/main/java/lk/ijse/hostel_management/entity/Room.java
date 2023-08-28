@@ -28,15 +28,18 @@ public class Room {
     @Column(name = "qty")
     private int qty;
 
+    @Column(name = "accomadation")
+    private int accomadation;
+
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "roomId")
     private List<Reservation> reservationList=new ArrayList<>();
 
-
-    public Room(String roomTypeId, String type, String keyMoney, Integer qty) {
-        this.roomId=roomTypeId;
-        this.type=type;
-        this.keyMoney=keyMoney;
-        this.qty=qty;
+    public Room(String roomId, String type, String keyMoney, int qty, int accomadation) {
+        this.roomId = roomId;
+        this.type = type;
+        this.keyMoney = keyMoney;
+        this.qty = qty;
+        this.accomadation = accomadation;
     }
 
     public Room(String roomId, int i) {

@@ -46,15 +46,16 @@ public class ReservationServiceImpl implements ReservationService <ReservationDT
            roomRepository.setSession(session);
            Long count=repository.countResId(reservationDTO.getRoomId());
            int newCount= (int) (count/5);
+           Room room=roomRepository.searchIdByString(reservationDTO.getRoomId());
+           if(count%room.getAccomadation()==0){
 
-           if(count%5==0){
-               Room room=roomRepository.searchIdByString(reservationDTO.getRoomId());
 
                roomRepository.update(new Room(
                        room.getRoomId(),
                        room.getType(),
                        room.getKeyMoney(),
-                       room.getQty()-1
+                       room.getQty()-1,
+                       room.getAccomadation()
                ));
            }
 
@@ -135,15 +136,16 @@ public class ReservationServiceImpl implements ReservationService <ReservationDT
                 roomRepository.setSession(session);
                 Long count=repository.countResId(reservationDTO.getRoomId());
                 int newCount= (int) (count/5);
+                Room room=roomRepository.searchIdByString(reservationDTO.getRoomId());
 
-                if(count%5==5-1){
-                    Room room=roomRepository.searchIdByString(reservationDTO.getRoomId());
+                if(count%room.getAccomadation()==room.getAccomadation()-1){
 
                     roomRepository.update(new Room(
                             room.getRoomId(),
                             room.getType(),
                             room.getKeyMoney(),
-                            room.getQty()+1
+                            room.getQty()+1,
+                            room.getAccomadation()
                     ));
                 }
 //                else{

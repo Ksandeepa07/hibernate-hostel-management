@@ -55,15 +55,26 @@ public class RoomController {
     private JFXButton backBtn;
 
     @FXML
+    private TextField accomadationsTxt;
+
+    @FXML
     void deleteBtnOnACtion(ActionEvent event) {
 
-        boolean isdeleted=roomService.deleteRoom(new RoomDTO(roomTypeIdTxt.getText()
-                , typeTxt.getText()
-                , keyMoneyTxt.getText()
-                , Integer.parseInt(quantityTxt.getText())));
+        boolean isdeleted=roomService.deleteRoom(new RoomDTO(
+                roomTypeIdTxt.getText(),
+                typeTxt.getText(),
+                keyMoneyTxt.getText(),
+                Integer.parseInt(quantityTxt.getText()),
+                Integer.parseInt(accomadationsTxt.getText())
+        ));
 
         if (isdeleted){
             getAll();
+                    roomTypeIdTxt.setText("");
+                    typeTxt.setText("");
+                    keyMoneyTxt.setText("");
+                    quantityTxt.setText("");
+                    accomadationsTxt.setText("");
         }else {
             System.out.println("not deleted");
         }
@@ -73,14 +84,21 @@ public class RoomController {
     @FXML
     void saveBtnOnAction(ActionEvent event) {
 
-        boolean isSaved = roomService.saveRoom(new RoomDTO(roomTypeIdTxt.getText()
-                , typeTxt.getText()
-                , keyMoneyTxt.getText()
-                , Integer.parseInt(quantityTxt.getText())));
+        boolean isSaved = roomService.saveRoom(new RoomDTO(
+                roomTypeIdTxt.getText(),
+                typeTxt.getText(),
+                keyMoneyTxt.getText(),
+                Integer.parseInt(quantityTxt.getText()),
+                Integer.parseInt(accomadationsTxt.getText())
+        ));
 
         if (isSaved) {
             getAll();
-            System.out.println("saved");
+            roomTypeIdTxt.setText("");
+            typeTxt.setText("");
+            keyMoneyTxt.setText("");
+            quantityTxt.setText("");
+            accomadationsTxt.setText("");
         } else {
             System.out.println("not saved");
         }
@@ -88,13 +106,21 @@ public class RoomController {
 
     @FXML
     void updateBtnOnAction(ActionEvent event) {
-        boolean isUpdated=roomService.updateRoom(new RoomDTO(roomTypeIdTxt.getText()
-                , typeTxt.getText()
-                , keyMoneyTxt.getText()
-                , Integer.parseInt(quantityTxt.getText())));
+        boolean isUpdated=roomService.updateRoom(new RoomDTO(
+                roomTypeIdTxt.getText(),
+                typeTxt.getText(),
+                keyMoneyTxt.getText(),
+                Integer.parseInt(quantityTxt.getText()),
+                Integer.parseInt(accomadationsTxt.getText())
+        ));
 
         if(isUpdated){
             getAll();
+            roomTypeIdTxt.setText("");
+            typeTxt.setText("");
+            keyMoneyTxt.setText("");
+            quantityTxt.setText("");
+            accomadationsTxt.setText("");
         }else{
             System.out.println("not updated");
         }

@@ -94,6 +94,12 @@ public class StudentController {
 
         if(idDeleted){
             getAll();
+                    studentIdTxt.setText("");
+                    nameTxt.setText("");
+                    addressTxt.setText("");
+                    contactTxt.setText("");
+                    dobTxt.setValue(null);
+                    genderCmb.setValue(null);
         }else{
             System.out.println("error");
         }
@@ -114,6 +120,12 @@ public class StudentController {
 
         if (isSaved) {
             getAll();
+            studentIdTxt.setText("");
+            nameTxt.setText("");
+            addressTxt.setText("");
+            contactTxt.setText("");
+            dobTxt.setValue(null);
+            genderCmb.setValue(null);
 
         } else {
             System.out.println("not saved");
@@ -150,6 +162,12 @@ public class StudentController {
 
         if(isUpdated){
             getAll();
+            studentIdTxt.setText("");
+            nameTxt.setText("");
+            addressTxt.setText("");
+            contactTxt.setText("");
+            dobTxt.setValue(null);
+            genderCmb.setValue(null);
         }else {
             System.out.println("not");
         }

@@ -28,7 +28,8 @@ public class HomeServiceImpl implements HomeService {
                         room.getRoomId(),
                         room.getType(),
                         room.getKeyMoney(),
-                        room.getQty()
+                        room.getQty(),
+                        room.getAccomadation()
                 ));
 
             }

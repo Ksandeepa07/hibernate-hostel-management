@@ -10,9 +10,17 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import lk.ijse.hostel_management.controller.util.StageController;
 import lk.ijse.hostel_management.controller.util.TimeController;
 import lk.ijse.hostel_management.dto.RoomDTO;
@@ -22,6 +30,9 @@ import lk.ijse.hostel_management.service.custom.HomeService;
 public class DashboardController {
 
     HomeService homeService= ServiceFactory.getInstance().getService(ServiceFactory.serviceTypes.home);
+
+    @FXML
+    private VBox VBoxMain;
 
     @FXML
     private AnchorPane ancPane;
@@ -45,6 +56,9 @@ public class DashboardController {
     private JFXButton resevationBtn;
 
     @FXML
+    private ScrollPane scrolPane;
+
+    @FXML
     private Label timeLbl;
 
     @FXML
@@ -57,10 +71,10 @@ public class DashboardController {
     private Label type1NameLbl2;
 
     @FXML
-    private Label type1NameLbl4;
+    private Label type1NameLbl3;
 
     @FXML
-    private Label type1NameLbl3;
+    private Label type1NameLbl4;
 
     @FXML
     private Label type1QtyLbl;
@@ -120,6 +134,31 @@ public class DashboardController {
 
     void getAllRooms(){
         List<RoomDTO> roomDTOList=homeService.getAllRooms();
+        for (RoomDTO roomDTO : roomDTOList) {
+            if (roomDTO.getQty()==0) {
+                Text text = new Text(roomDTO.getRoomTypeId() +"   :      Not Availble");
+                text.setFill(Color.WHITE);
+                text.setStyle("-fx-font-size: 14");
+                TextFlow textFlow = new TextFlow(text);
+                textFlow.setStyle("-fx-background-color: #000000; -fx-font-weight: bold;");
+                textFlow.setPadding(new Insets(10, 8, 10, 10));
+                HBox vBox = new HBox();
+                vBox.setHgrow(textFlow, javafx.scene.layout.Priority.ALWAYS);
+                vBox.getChildren().add(textFlow);
+                VBoxMain.getChildren().add(vBox);
+            }else{
+                Text text = new Text(roomDTO.getRoomTypeId() +"   :      Availble");
+                text.setFill(Color.WHITE);
+                text.setStyle("-fx-font-size: 14");
+                TextFlow textFlow = new TextFlow(text);
+                textFlow.setStyle("-fx-background-color: #000000; -fx-font-weight: bold;  ");
+                textFlow.setPadding(new Insets(10, 8, 10, 10));
+                HBox vBox = new HBox();
+                vBox.setHgrow(textFlow, javafx.scene.layout.Priority.ALWAYS);
+                vBox.getChildren().add(textFlow);
+                VBoxMain.getChildren().add(vBox);
+            }
+        }
 
         if(roomDTOList.size()==4){
             if (roomDTOList.get(0).getQty()==0) {
@@ -198,7 +237,6 @@ public class DashboardController {
                 type1QtyLbl2.setText("Available");
             }
 
-
         }else if(roomDTOList.size()==1) {
 
             if (roomDTOList.get(0).getQty()==0) {
@@ -208,18 +246,14 @@ public class DashboardController {
                 type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
                 type1QtyLbl.setText("Available");
             }
-
-
         }
-
-
-
     }
 
     @FXML
     void initialize() {
         getAllRooms();
         TimeController.timeNow(timeLbl,dateLbl);
+        VBoxMain.setSpacing(2);
         assert ancPane != null : "fx:id=\"ancPane\" was not injected: check your FXML file 'dashboardForm.fxml'.";
         assert manageRoomBtn != null : "fx:id=\"manageRoomBtn\" was not injected: check your FXML file 'dashboardForm.fxml'.";
         assert resevationBtn != null : "fx:id=\"resevationBtn\" was not injected: check your FXML file 'dashboardForm.fxml'.";

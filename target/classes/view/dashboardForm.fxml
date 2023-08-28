@@ -2,7 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="ancPane" prefHeight="902.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.DashboardController">
@@ -103,5 +105,10 @@
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Label>
+      <ScrollPane fx:id="scrolPane" layoutX="534.0" layoutY="331.0" prefHeight="494.0" prefWidth="384.0">
+         <content>
+            <VBox fx:id="VBoxMain" prefHeight="491.0" prefWidth="385.0" />
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

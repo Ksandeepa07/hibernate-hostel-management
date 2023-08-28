@@ -25,10 +25,9 @@ public class RoomServiceImpl implements RoomService<RoomDTO, String> {
                     roomDTO.getRoomTypeId(),
                     roomDTO.getType(),
                     roomDTO.getKeyMoney(),
-                    roomDTO.getQty()
-                    )
-
-            );
+                    roomDTO.getQty(),
+                    roomDTO.getAccomadation()
+            ));
             transaction.commit();
             session.close();
             return saved;
@@ -51,7 +50,9 @@ public class RoomServiceImpl implements RoomService<RoomDTO, String> {
             boolean isUpadted=repository.update(new Room(roomDTO.getRoomTypeId()
                     , roomDTO.getType()
                     , roomDTO.getKeyMoney()
-                    , roomDTO.getQty()));
+                    , roomDTO.getQty()
+                    ,roomDTO.getAccomadation()
+            ));
 
             transaction.commit();
             session.close();
@@ -74,7 +75,9 @@ public class RoomServiceImpl implements RoomService<RoomDTO, String> {
            boolean isDeletd=repository.delete(new Room(roomDTO.getRoomTypeId()
                     , roomDTO.getType()
                     , roomDTO.getKeyMoney()
-                    , roomDTO.getQty()));
+                    , roomDTO.getQty()
+                   ,roomDTO.getAccomadation()
+           ));
 
             transaction.commit();
             session.close();
@@ -101,7 +104,9 @@ public class RoomServiceImpl implements RoomService<RoomDTO, String> {
                roomDTOS.add(new RoomDTO(room.getRoomId()
                        ,room.getType()
                        ,room.getKeyMoney()
-                       ,room.getQty()));
+                       ,room.getQty()
+                       ,room.getAccomadation()
+               ));
 
             }
             transaction.commit();

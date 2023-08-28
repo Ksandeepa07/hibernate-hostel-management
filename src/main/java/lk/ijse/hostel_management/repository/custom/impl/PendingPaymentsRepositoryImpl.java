@@ -43,7 +43,7 @@ public class PendingPaymentsRepositoryImpl implements PendingPaymentsRepository 
 
     @Override
     public List<CustomeProjection> getAllPendingPayments() {
-        Query<CustomeProjection> query=session.createQuery("select new lk.ijse.hostel_management.Projection.CustomeProjection (" + " r.reservationId,s.studentId,s.studentName,s.contact) from Student s  join Reservation  r on s.studentId = r.studentId where r.status='paid'");
+        Query<CustomeProjection> query=session.createQuery("select new lk.ijse.hostel_management.Projection.CustomeProjection (" + " r.reservationId,s.studentId,s.studentName,s.contact) from Student s  join Reservation  r on s.studentId = r.studentId where r.status='not paid'");
         List<CustomeProjection> list=query.getResultList();
         System.out.println(list);
         return list;

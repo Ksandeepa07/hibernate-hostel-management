@@ -72,7 +72,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     @Override
     public String generateNextResevationId() {
         Query query=session.createQuery("select r.reservationId from Reservation r order by r.reservationId desc ");
-        query.setFirstResult(1);
+        query.setMaxResults(1);
         List<String> results = query.list();
         String currentId = results.isEmpty() ? null : results.get(0);
         return splitOrderId(currentId);
@@ -85,7 +85,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
             int id = Integer.parseInt(strings[1]);
             ++id;
             String digit = String.format("%03d", id);
-            return "Res--" + digit;
+            return "Res-" + digit;
         }
         return "Res-001";
     }
