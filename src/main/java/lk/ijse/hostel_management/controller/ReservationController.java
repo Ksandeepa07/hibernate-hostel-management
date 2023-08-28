@@ -23,6 +23,7 @@ import lk.ijse.hostel_management.dto.ReservationDTO;
 import lk.ijse.hostel_management.service.ServiceFactory;
 import lk.ijse.hostel_management.service.custom.ReservationService;
 import lk.ijse.hostel_management.view.tdm.ReservationTM;
+import lk.ijse.hostel_management.view.tdm.RoomTM;
 
 public class ReservationController {
 
@@ -89,6 +90,7 @@ public class ReservationController {
         System.out.println(isSaved);
 
         if (isSaved){
+            getAll();
             System.out.println("saved");
         }else{
             System.out.println("not saved");
@@ -106,6 +108,7 @@ public class ReservationController {
                 statuscmb.getValue()));
 
         if(isDeleted){
+            getAll();
             System.out.println("deleted");
         }else{
             System.out.println("not deleted");
@@ -115,11 +118,34 @@ public class ReservationController {
 
     @FXML
     void tblOnAction(MouseEvent event) {
+        TablePosition pos = reservationTbl.getSelectionModel().getSelectedCells().get(0);
+        int row = pos.getRow();
+        ObservableList<TableColumn<ReservationTM, ?>> columns = reservationTbl.getColumns();
+
+        resIdTxt.setText(columns.get(0).getCellData(row).toString());
+        roomTypeIdCmb.setValue(columns.get(1).getCellData(row).toString());
+        studentIdCmb.setValue(columns.get(2).getCellData(row).toString());
+        dateLbl.setText(columns.get(3).getCellData(row).toString());
+        statuscmb.setValue(columns.get(4).getCellData(row).toString());
+
 
     }
 
     @FXML
     void updateBtnOnAction(ActionEvent event) {
+        boolean isUpdated=service.updateReservation(new ReservationDTO(
+                resIdTxt.getText(),
+                LocalDate.now(),
+                studentIdCmb.getValue(),
+                roomTypeIdCmb.getValue(),
+                statuscmb.getValue()));
+
+        if(isUpdated){
+            getAll();
+            System.out.println("updated");
+        }else{
+            System.out.println("not");
+        }
 
     }
 
@@ -180,12 +206,19 @@ public class ReservationController {
 
     }
 
+    void generateNextResvationId(){
+        String id=service.generateNextResevationId();
+        resIdTxt.setText(id);
+
+    }
+
     @FXML
     void initialize() {
         getAll();
         setCellValueFactory();
         loadStudentIds();
         loadRoomTypeIds();
+        generateNextResvationId();
         dateLbl.setText(LocalDate.now().toString());
         statuscmb.getItems().addAll("Paid","Not Paid");
         assert addBtn != null : "fx:id=\"addBtn\" was not injected: check your FXML file 'reservationForm.fxml'.";

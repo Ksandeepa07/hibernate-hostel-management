@@ -28,7 +28,8 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     @Override
     public boolean update(Reservation reservation) {
-        return false;
+        session.update(reservation);
+        return true;
     }
 
     @Override
@@ -66,5 +67,26 @@ public class ReservationRepositoryImpl implements ReservationRepository {
         Long roomIdCOunt = query.uniqueResult();
         System.out.println(roomIdCOunt);
         return roomIdCOunt;
+    }
+
+    @Override
+    public String generateNextResevationId() {
+        Query query=session.createQuery("select r.reservationId from Reservation r order by r.reservationId desc ");
+        query.setFirstResult(1);
+        List<String> results = query.list();
+        String currentId = results.isEmpty() ? null : results.get(0);
+        return splitOrderId(currentId);
+
+    }
+
+    private static String splitOrderId(String currentId) {
+        if (currentId != null) {
+            String[] strings = currentId.split("Res-");
+            int id = Integer.parseInt(strings[1]);
+            ++id;
+            String digit = String.format("%03d", id);
+            return "Res--" + digit;
+        }
+        return "Res-001";
     }
 }

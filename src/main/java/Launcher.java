@@ -22,6 +22,5 @@ public class Launcher extends Application {
         stage.setTitle("Loading Page");
         stage.centerOnScreen();
         stage.show();
-
     }
 }

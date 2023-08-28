@@ -4,6 +4,7 @@ package lk.ijse.hostel_management.controller;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -13,8 +14,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hostel_management.controller.util.StageController;
+import lk.ijse.hostel_management.controller.util.TimeController;
+import lk.ijse.hostel_management.dto.RoomDTO;
+import lk.ijse.hostel_management.service.ServiceFactory;
+import lk.ijse.hostel_management.service.custom.HomeService;
 
 public class DashboardController {
+
+    HomeService homeService= ServiceFactory.getInstance().getService(ServiceFactory.serviceTypes.home);
 
     @FXML
     private AnchorPane ancPane;
@@ -44,6 +51,30 @@ public class DashboardController {
     private Label type1;
 
     @FXML
+    private Label type1NameLbl;
+
+    @FXML
+    private Label type1NameLbl2;
+
+    @FXML
+    private Label type1NameLbl4;
+
+    @FXML
+    private Label type1NameLbl3;
+
+    @FXML
+    private Label type1QtyLbl;
+
+    @FXML
+    private Label type1QtyLbl114;
+
+    @FXML
+    private Label type1QtyLbl13;
+
+    @FXML
+    private Label type1QtyLbl2;
+
+    @FXML
     private Label type2;
 
     @FXML
@@ -51,6 +82,8 @@ public class DashboardController {
 
     @FXML
     private Label type4;
+
+
 
 
     @FXML
@@ -74,6 +107,7 @@ public class DashboardController {
 
     @FXML
     void pendingPapymentsBtnOnAction(ActionEvent event) {
+        StageController.changeScene("/view/pendingPaymentsForm.fxml",ancPane);
 
     }
 
@@ -84,10 +118,108 @@ public class DashboardController {
 
     }
 
+    void getAllRooms(){
+        List<RoomDTO> roomDTOList=homeService.getAllRooms();
+
+        if(roomDTOList.size()==4){
+            if (roomDTOList.get(0).getQty()==0) {
+                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+                type1QtyLbl.setText("Not Available");
+            }else{
+                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+                type1QtyLbl.setText("Available");
+            }
+
+            if (roomDTOList.get(1).getQty()==0) {
+                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+                type1QtyLbl2.setText("Not Available");
+            }else {
+                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+                type1QtyLbl2.setText("Available");
+            }
+
+            if (roomDTOList.get(2).getQty()==0) {
+                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
+                type1QtyLbl13.setText("Not Available");
+            }else{
+                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
+                type1QtyLbl13.setText("Available");
+            }
+
+            if (roomDTOList.get(4).getQty()==0) {
+                type1NameLbl4.setText(roomDTOList.get(3).getRoomTypeId());
+                type1QtyLbl114.setText("Not Available");
+            }else{
+                type1NameLbl4.setText(roomDTOList.get(3).getRoomTypeId());
+                type1QtyLbl114.setText("Available");
+            }
+
+        } else if(roomDTOList.size()==3) {
+
+            if (roomDTOList.get(0).getQty()==0) {
+                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+                type1QtyLbl.setText("Not Available");
+            }else{
+                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+                type1QtyLbl.setText("Available");
+            }
+
+            if (roomDTOList.get(1).getQty()==0) {
+                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+                type1QtyLbl2.setText("Not Available");
+            }else {
+                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+                type1QtyLbl2.setText("Available");
+            }
+
+            if (roomDTOList.get(2).getQty()==0) {
+                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
+                type1QtyLbl13.setText("Not Available");
+            }else{
+                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
+                type1QtyLbl13.setText("Available");
+            }
+
+        }else if(roomDTOList.size()==2) {
+
+            if (roomDTOList.get(0).getQty()==0) {
+                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+                type1QtyLbl.setText("Not Available");
+            }else{
+                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+                type1QtyLbl.setText("Available");
+            }
+
+            if (roomDTOList.get(1).getQty()==0) {
+                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+                type1QtyLbl2.setText("Not Available");
+            }else {
+                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+                type1QtyLbl2.setText("Available");
+            }
+
+
+        }else if(roomDTOList.size()==1) {
+
+            if (roomDTOList.get(0).getQty()==0) {
+                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+                type1QtyLbl.setText("Not Available");
+            }else{
+                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+                type1QtyLbl.setText("Available");
+            }
+
+
+        }
+
+
+
+    }
+
     @FXML
     void initialize() {
-        dateLbl.setText(LocalDate.now().toString());
-        timeLbl.setText(LocalTime.now().toString());
+        getAllRooms();
+        TimeController.timeNow(timeLbl,dateLbl);
         assert ancPane != null : "fx:id=\"ancPane\" was not injected: check your FXML file 'dashboardForm.fxml'.";
         assert manageRoomBtn != null : "fx:id=\"manageRoomBtn\" was not injected: check your FXML file 'dashboardForm.fxml'.";
         assert resevationBtn != null : "fx:id=\"resevationBtn\" was not injected: check your FXML file 'dashboardForm.fxml'.";

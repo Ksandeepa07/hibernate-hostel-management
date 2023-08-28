@@ -16,7 +16,7 @@ public class ServiceFactory {
     }
 
     public enum serviceTypes{
-        Room,user,student,reservation,pendingPayments
+        Room,user,student,reservation,pendingPayments,home
 
     }
     public <T extends SuperService>T getService(serviceTypes serviceTypes){
@@ -35,6 +35,9 @@ public class ServiceFactory {
 
             case pendingPayments:
                 return (T)new PendingPaymentsServiceImpl();
+
+            case home:
+                return (T)new HomeServiceImpl();
 
             default:
                 return null;

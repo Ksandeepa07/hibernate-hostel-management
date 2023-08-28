@@ -90,7 +90,30 @@ public class ReservationServiceImpl implements ReservationService <ReservationDT
 
     @Override
     public boolean updateReservation(ReservationDTO reservationDTO) {
-        return false;
+        Session session=SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        try{
+            repository.setSession(session);
+            ReservationPK reservationPK=new ReservationPK(reservationDTO.getStudentId(),reservationDTO.getRoomId());
+
+            boolean isUpadted=repository.update(
+                    new Reservation(
+                            reservationDTO.getResId(),
+                            LocalDate.now(),
+                            reservationPK,
+                            reservationDTO.getStatus()
+            ));
+
+            transaction.commit();
+            session.close();
+            return isUpadted;
+
+        }catch (Exception e){
+            transaction.rollback();
+            session.close();
+            return false;
+        }
     }
 
     @Override
@@ -233,6 +256,25 @@ public class ReservationServiceImpl implements ReservationService <ReservationDT
             session.close();
             return null;
 
+        }
+    }
+
+    @Override
+    public String generateNextResevationId() {
+        Session session=SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        try {
+            repository.setSession(session);
+            String id=repository.generateNextResevationId();
+            transaction.commit();
+            session.close();
+            return id;
+
+        }catch (Exception e){
+            transaction.rollback();
+            session.close();
+            return null;
         }
     }
 

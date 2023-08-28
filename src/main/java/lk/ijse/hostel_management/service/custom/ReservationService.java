@@ -11,4 +11,5 @@ public interface ReservationService<T,ID> extends SuperService {
     List<T> getAllReservation();
     List<ID> loadStudentIds();
     List<ID> loadRoomTypeIds();
+    String generateNextResevationId();
 }

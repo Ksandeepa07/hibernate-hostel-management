@@ -54,6 +54,7 @@ public class StudentRepositoryImpl implements StudentRepository {
     public List<String> loadStudentIds() {
         Query<String> query=session.createQuery("SELECT s.id FROM Student s", String.class);
         List<String> list=query.getResultList();
+        System.out.println(list);
         return list;
     }
 }
