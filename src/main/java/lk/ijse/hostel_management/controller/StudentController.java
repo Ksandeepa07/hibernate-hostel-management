@@ -1,10 +1,5 @@
 package lk.ijse.hostel_management.controller;
 
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,16 +9,21 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.hostel_management.controller.util.NotificationController;
 import lk.ijse.hostel_management.controller.util.StageController;
 import lk.ijse.hostel_management.dto.StudentDTO;
 import lk.ijse.hostel_management.service.ServiceFactory;
 import lk.ijse.hostel_management.service.custom.StudentService;
-import lk.ijse.hostel_management.view.tdm.RoomTM;
 import lk.ijse.hostel_management.view.tdm.StudentTM;
+
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class StudentController {
 
-    StudentService service= ServiceFactory.getInstance().getService(ServiceFactory.serviceTypes.student);
+    StudentService service = ServiceFactory.getInstance().getService(ServiceFactory.serviceTypes.student);
 
     @FXML
     private ResourceBundle resources;
@@ -78,13 +78,13 @@ public class StudentController {
 
     @FXML
     void backBtnOnAction(ActionEvent event) {
-        StageController.changeScene("/view/dashboardForm.fxml",ancPane);
+        StageController.changeScene("/view/dashboardForm.fxml", ancPane);
 
     }
 
     @FXML
     void deleteBtnOnACtion(ActionEvent event) {
-       boolean idDeleted=service.deleteStudent(new StudentDTO(
+        boolean idDeleted = service.deleteStudent(new StudentDTO(
                 studentIdTxt.getText(),
                 nameTxt.getText(),
                 addressTxt.getText(),
@@ -92,15 +92,16 @@ public class StudentController {
                 dobTxt.getValue().toString(),
                 genderCmb.getSelectionModel().getSelectedItem()));
 
-        if(idDeleted){
+        if (idDeleted) {
+            NotificationController.animationMesseage("/assets/tick.gif", "Student Deleted Sucessfully", "Studemt");
             getAll();
-                    studentIdTxt.setText("");
-                    nameTxt.setText("");
-                    addressTxt.setText("");
-                    contactTxt.setText("");
-                    dobTxt.setValue(null);
-                    genderCmb.setValue(null);
-        }else{
+            studentIdTxt.setText("");
+            nameTxt.setText("");
+            addressTxt.setText("");
+            contactTxt.setText("");
+            dobTxt.setValue(null);
+            genderCmb.setValue(null);
+        } else {
             System.out.println("error");
         }
 
@@ -109,7 +110,7 @@ public class StudentController {
     @FXML
     void saveBtnOnAction(ActionEvent event) {
 
-        boolean isSaved=service.saveStudent(new StudentDTO(
+        boolean isSaved = service.saveStudent(new StudentDTO(
                 studentIdTxt.getText(),
                 nameTxt.getText(),
                 addressTxt.getText(),
@@ -119,6 +120,7 @@ public class StudentController {
         ));
 
         if (isSaved) {
+            NotificationController.animationMesseage("/assets/tick.gif", "Student Saved Sucessfully", "Studemt");
             getAll();
             studentIdTxt.setText("");
             nameTxt.setText("");
@@ -151,7 +153,7 @@ public class StudentController {
     @FXML
     void updateBtnOnAction(ActionEvent event) {
 
-        boolean isUpdated=service.updateStudent(
+        boolean isUpdated = service.updateStudent(
                 new StudentDTO(
                         studentIdTxt.getText(),
                         nameTxt.getText(),
@@ -160,7 +162,8 @@ public class StudentController {
                         dobTxt.getValue().toString(),
                         genderCmb.getSelectionModel().getSelectedItem()));
 
-        if(isUpdated){
+        if (isUpdated) {
+            NotificationController.animationMesseage("/assets/tick.gif", "Student Updated Sucessfully", "Studemt");
             getAll();
             studentIdTxt.setText("");
             nameTxt.setText("");
@@ -168,15 +171,15 @@ public class StudentController {
             contactTxt.setText("");
             dobTxt.setValue(null);
             genderCmb.setValue(null);
-        }else {
+        } else {
             System.out.println("not");
         }
 
     }
 
-    void getAll(){
-        List<StudentDTO> studentDTOList= service.getAllStudents();
-        ObservableList<StudentTM> list= FXCollections.observableArrayList();
+    void getAll() {
+        List<StudentDTO> studentDTOList = service.getAllStudents();
+        ObservableList<StudentTM> list = FXCollections.observableArrayList();
         for (StudentDTO studentDTO : studentDTOList) {
             list.add(new StudentTM(
                     studentDTO.getStudentId(),
@@ -192,7 +195,7 @@ public class StudentController {
 
     }
 
-    void setCellValueFactory(){
+    void setCellValueFactory() {
         studentIdCol.setCellValueFactory(new PropertyValueFactory<>("studentId"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -205,7 +208,7 @@ public class StudentController {
 
     @FXML
     void initialize() {
-        genderCmb.getItems().addAll("Male","Female");
+        genderCmb.getItems().addAll("Male", "Female");
         getAll();
         setCellValueFactory();
         assert addressCol != null : "fx:id=\"addressCol\" was not injected: check your FXML file 'studentForm.fxml'.";

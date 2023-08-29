@@ -1,13 +1,5 @@
 package lk.ijse.hostel_management.controller;
 
-import java.net.URL;
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Timer;
-
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,17 +9,19 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import jdk.dynalink.linker.LinkerServices;
+import lk.ijse.hostel_management.controller.util.NotificationController;
 import lk.ijse.hostel_management.controller.util.StageController;
 import lk.ijse.hostel_management.dto.ReservationDTO;
 import lk.ijse.hostel_management.service.ServiceFactory;
 import lk.ijse.hostel_management.service.custom.ReservationService;
 import lk.ijse.hostel_management.view.tdm.ReservationTM;
-import lk.ijse.hostel_management.view.tdm.RoomTM;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class ReservationController {
 
-    ReservationService service= ServiceFactory.getInstance().getService(ServiceFactory.serviceTypes.reservation);
+    ReservationService service = ServiceFactory.getInstance().getService(ServiceFactory.serviceTypes.reservation);
 
     @FXML
     private Button addBtn;
@@ -79,7 +73,7 @@ public class ReservationController {
 
     @FXML
     void addBtnOnAction(ActionEvent event) {
-        boolean isSaved=service.saveReservation(new ReservationDTO(
+        boolean isSaved = service.saveReservation(new ReservationDTO(
                 resIdTxt.getText(),
                 LocalDate.now(),
                 studentIdCmb.getValue(),
@@ -89,11 +83,17 @@ public class ReservationController {
 
         System.out.println(isSaved);
 
-        if (isSaved){
+        if (isSaved) {
+            NotificationController.animationMesseage("/assets/tick.gif", "Reservation Added Sucessfully", "Reservation");
             getAll();
             generateNextResvationId();
-            System.out.println("saved");
-        }else{
+            resIdTxt.setText("");
+            dateLbl.setText("");
+            studentIdCmb.setValue(null);
+            roomTypeIdCmb.setValue(null);
+            statuscmb.setValue(null);
+
+        } else {
             System.out.println("not saved");
         }
 
@@ -101,17 +101,23 @@ public class ReservationController {
 
     @FXML
     void deleteBtnOnAction(ActionEvent event) {
-       boolean isDeleted= service.deleteReservation(new ReservationDTO(
+        boolean isDeleted = service.deleteReservation(new ReservationDTO(
                 resIdTxt.getText(),
                 LocalDate.now(),
                 studentIdCmb.getValue(),
                 roomTypeIdCmb.getValue(),
                 statuscmb.getValue()));
 
-        if(isDeleted){
+        if (isDeleted) {
+            NotificationController.animationMesseage("/assets/tick.gif", "Reservation Deleted Sucessfully", "Reservation");
             getAll();
-            System.out.println("deleted");
-        }else{
+            resIdTxt.setText("");
+            dateLbl.setText("");
+            studentIdCmb.setValue(null);
+            roomTypeIdCmb.setValue(null);
+            statuscmb.setValue(null);
+
+        } else {
             System.out.println("not deleted");
         }
 
@@ -134,25 +140,30 @@ public class ReservationController {
 
     @FXML
     void updateBtnOnAction(ActionEvent event) {
-        boolean isUpdated=service.updateReservation(new ReservationDTO(
+        boolean isUpdated = service.updateReservation(new ReservationDTO(
                 resIdTxt.getText(),
                 LocalDate.now(),
                 studentIdCmb.getValue(),
                 roomTypeIdCmb.getValue(),
                 statuscmb.getValue()));
 
-        if(isUpdated){
+        if (isUpdated) {
+            NotificationController.animationMesseage("/assets/tick.gif", "Reservation Updated Sucessfully", "Reservation");
             getAll();
-            System.out.println("updated");
-        }else{
+            resIdTxt.setText("");
+            dateLbl.setText("");
+            studentIdCmb.setValue(null);
+            roomTypeIdCmb.setValue(null);
+            statuscmb.setValue(null);
+        } else {
             System.out.println("not");
         }
 
     }
 
-    void getAll(){
-        List<ReservationDTO> reservationDTOS=service.getAllReservation();
-        ObservableList<ReservationTM> list=FXCollections.observableArrayList();
+    void getAll() {
+        List<ReservationDTO> reservationDTOS = service.getAllReservation();
+        ObservableList<ReservationTM> list = FXCollections.observableArrayList();
 
         for (ReservationDTO reservationDTO : reservationDTOS) {
             list.add(new ReservationTM(
@@ -168,7 +179,7 @@ public class ReservationController {
         }
     }
 
-    void setCellValueFactory(){
+    void setCellValueFactory() {
         resevationIdCol.setCellValueFactory(new PropertyValueFactory<>("resId"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         studentIdCol.setCellValueFactory(new PropertyValueFactory<>("studentId"));
@@ -180,14 +191,14 @@ public class ReservationController {
 
     @FXML
     void backBtnOnAction(ActionEvent event) {
-        StageController.changeScene("/view/dashboardForm.fxml",ancPane);
+        StageController.changeScene("/view/dashboardForm.fxml", ancPane);
 
     }
 
-    void loadStudentIds(){
+    void loadStudentIds() {
 
-        List<String> list=service.loadStudentIds();
-        ObservableList<String> observableList= FXCollections.observableArrayList();
+        List<String> list = service.loadStudentIds();
+        ObservableList<String> observableList = FXCollections.observableArrayList();
         for (String s : list) {
             observableList.add(s);
 
@@ -196,9 +207,9 @@ public class ReservationController {
 
     }
 
-    void loadRoomTypeIds(){
-        List<String> list=service.loadRoomTypeIds();
-        ObservableList<String> observableList= FXCollections.observableArrayList();
+    void loadRoomTypeIds() {
+        List<String> list = service.loadRoomTypeIds();
+        ObservableList<String> observableList = FXCollections.observableArrayList();
         for (String s : list) {
             observableList.add(s);
 
@@ -207,8 +218,8 @@ public class ReservationController {
 
     }
 
-    void generateNextResvationId(){
-        String id=service.generateNextResevationId();
+    void generateNextResvationId() {
+        String id = service.generateNextResevationId();
         resIdTxt.setText(id);
 
     }
@@ -221,7 +232,7 @@ public class ReservationController {
         loadRoomTypeIds();
         generateNextResvationId();
         dateLbl.setText(LocalDate.now().toString());
-        statuscmb.getItems().addAll("Paid","Not Paid");
+        statuscmb.getItems().addAll("Paid", "Not Paid");
         assert addBtn != null : "fx:id=\"addBtn\" was not injected: check your FXML file 'reservationForm.fxml'.";
         assert ancPane != null : "fx:id=\"ancPane\" was not injected: check your FXML file 'reservationForm.fxml'.";
         assert dateLbl != null : "fx:id=\"dateLbl\" was not injected: check your FXML file 'reservationForm.fxml'.";

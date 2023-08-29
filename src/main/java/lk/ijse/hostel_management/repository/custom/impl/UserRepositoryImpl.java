@@ -14,12 +14,16 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean save(User user) {
-        return false;
+        session.save(user);
+        return true;
+
     }
 
     @Override
     public boolean update(User user) {
-        return false;
+       session.update(user);
+        System.out.println(user);
+        return true;
     }
 
     @Override
@@ -34,13 +38,13 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User searchById(Integer id) {
-        User user=session.get(User.class,id);
-        return user;
+       return null;
     }
 
     @Override
-    public User searchIdByString(String s) {
-        return null;
+    public User searchIdByString(String id) {
+        User user=session.get(User.class,id);
+        return user;
     }
 
 

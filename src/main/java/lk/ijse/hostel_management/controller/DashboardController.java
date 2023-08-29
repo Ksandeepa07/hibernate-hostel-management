@@ -62,6 +62,9 @@ public class DashboardController {
     private Label timeLbl;
 
     @FXML
+    private JFXButton updatePwBtn;
+
+    @FXML
     private Label type1;
 
     @FXML
@@ -131,6 +134,13 @@ public class DashboardController {
         StageController.changeStage("/view/userForm.fxml","Login Page");
 
     }
+
+    @FXML
+    void updatePwBtnOnAction(ActionEvent event) {
+        StageController.changeStage("/view/updatePwForm.fxml","Update Password");
+
+    }
+
 
     void getAllRooms(){
         List<RoomDTO> roomDTOList=homeService.getAllRooms();
@@ -251,6 +261,7 @@ public class DashboardController {
 
     @FXML
     void initialize() {
+        System.out.println("User Id :"+LoginController.userId);
         getAllRooms();
         TimeController.timeNow(timeLbl,dateLbl);
         VBoxMain.setSpacing(2);

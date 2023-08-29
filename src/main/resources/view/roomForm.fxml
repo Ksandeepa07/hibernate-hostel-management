@@ -38,8 +38,9 @@
         <columns>
           <TableColumn fx:id="roomTypeIdCol" prefWidth="214.0" text="Room Type Id" />
           <TableColumn fx:id="tupeCOl" prefWidth="340.0" text="Type" />
-            <TableColumn fx:id="keyMpneyCol" prefWidth="342.0" text="Key Money" />
-            <TableColumn fx:id="quantityCol" prefWidth="246.0" text="Quantity" />
+            <TableColumn fx:id="keyMpneyCol" prefWidth="237.0" text="Key Money" />
+            <TableColumn fx:id="quantityCol" prefWidth="161.0" text="Quantity" />
+            <TableColumn fx:id="accomadationssCol" prefWidth="153.0" text="Accomadations" />
         </columns>
       </TableView>
       <JFXButton layoutX="1091.0" layoutY="263.0" onAction="#saveBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #FF0000;" text="Save" textFill="WHITE">

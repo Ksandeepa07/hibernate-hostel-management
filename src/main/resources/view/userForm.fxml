@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -8,23 +9,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ancpane" prefHeight="528.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.UserController">
+<AnchorPane fx:id="ancpane" prefHeight="528.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.LoginController">
    <children>
       <AnchorPane layoutX="362.0" prefHeight="639.0" prefWidth="539.0" style="-fx-background-color: black;">
          <children>
-            <JFXButton fx:id="loginBtn" buttonType="RAISED" layoutX="412.0" layoutY="448.0" onAction="#loginBtnOnAction" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #778899;" text="Login" textFill="#ebe1e1">
+            <JFXButton fx:id="loginBtn" buttonType="RAISED" layoutX="412.0" layoutY="529.0" onAction="#loginBtnOnAction" prefHeight="24.0" prefWidth="70.0" style="-fx-background-color: #778899;" text="Login" textFill="#ebe1e1">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </JFXButton>
-            <TextField fx:id="usernameTxt" layoutX="174.0" layoutY="283.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-width: 2; -fx-border-color: black black  #778899 black;" />
-            <TextField fx:id="passwordTxt" layoutX="180.0" layoutY="381.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-color: black black  #778899 black; -fx-border-width: 2;" />
-            <Label layoutX="181.0" layoutY="246.0" text="Username *" textFill="LIGHTSLATEGRAY">
+            <TextField fx:id="usernameTxt" layoutX="176.0" layoutY="364.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-width: 2; -fx-border-color: black black  #778899 black;" styleClass="textfiled" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="passwordTxt" layoutX="174.0" layoutY="467.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-color: black black  #778899 black; -fx-border-width: 2;" styleClass="textfiled" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></TextField>
+            <Label layoutX="179.0" layoutY="334.0" text="Username *" textFill="LIGHTSLATEGRAY">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="181.0" layoutY="347.0" text="Password *" textFill="LIGHTSLATEGRAY">
+            <Label layoutX="177.0" layoutY="437.0" text="Password *" textFill="LIGHTSLATEGRAY">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font>
@@ -34,6 +41,20 @@
                   <Image url="@../assets/user.png" />
                </image>
             </ImageView>
+            <Hyperlink fx:id="dontHaveAnAccount" layoutX="181.0" layoutY="573.0" onAction="#dontHaveAnAccountOnAction" prefHeight="24.0" prefWidth="209.0" text="Don't Have An Account" textFill="LIGHTSLATEGRAY">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Hyperlink>
+            <TextField fx:id="userIdTxt" layoutX="176.0" layoutY="254.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-width: 2; -fx-border-color: black black  #778899 black;" styleClass="textfiled" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></TextField>
+            <Label layoutX="180.0" layoutY="224.0" text="User Id *" textFill="LIGHTSLATEGRAY">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <ImageView fitHeight="639.0" fitWidth="483.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">

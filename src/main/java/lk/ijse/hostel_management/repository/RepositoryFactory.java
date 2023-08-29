@@ -17,7 +17,7 @@ public class RepositoryFactory {
     }
 
     public enum repositoryTypes{
-        room,user,student,reservation,pendingPayments
+        room,user,student,reservation,pendingPayments,signUp
 
     }
 
@@ -38,6 +38,8 @@ public class RepositoryFactory {
 
             case pendingPayments:
                 return (T)new PendingPaymentsRepositoryImpl();
+
+
 
 
             default:

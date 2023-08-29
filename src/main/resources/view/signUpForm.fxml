@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ancpane" prefHeight="639.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.UserController">
+   <children>
+      <AnchorPane layoutX="-20.0" prefHeight="639.0" prefWidth="539.0" style="-fx-background-color: black;">
+         <children>
+            <TextField fx:id="usernameTxt" layoutX="64.0" layoutY="389.0" prefHeight="32.0" prefWidth="259.0" style="-fx-background-color: none; -fx-border-width: 2; -fx-border-color: black black  #778899 black;" styleClass="textfiled" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="passwordTxt" layoutX="70.0" layoutY="487.0" prefHeight="32.0" prefWidth="259.0" style="-fx-background-color: none; -fx-border-color: black black  #778899 black; -fx-border-width: 2;" styleClass="textfiled" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></TextField>
+            <Label layoutX="70.0" layoutY="352.0" text="Username *" textFill="LIGHTSLATEGRAY">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="453.0" text="Password *" textFill="LIGHTSLATEGRAY">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="105.0" fitWidth="103.0" layoutX="142.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/user.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="signUpBtn" buttonType="RAISED" layoutX="251.0" layoutY="559.0" onAction="#signUpBtnOnAction" prefHeight="24.0" prefWidth="79.0" style="-fx-background-color: #778899;" text="Sign Up" textFill="#ebe1e1">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXButton>
+            <TextField fx:id="userIdTxt" layoutX="65.0" layoutY="274.0" prefHeight="32.0" prefWidth="259.0" style="-fx-background-color: none; -fx-border-width: 2; -fx-border-color: black black  #778899 black;" styleClass="textfiled" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></TextField>
+            <Label layoutX="70.0" layoutY="237.0" text="User Id *" textFill="LIGHTSLATEGRAY">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="639.0" fitWidth="486.0" layoutX="390.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/hostel2.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.hostel_management.controller.util.NotificationController;
 import lk.ijse.hostel_management.controller.util.StageController;
 import lk.ijse.hostel_management.dto.RoomDTO;
 import lk.ijse.hostel_management.service.ServiceFactory;
@@ -40,6 +41,10 @@ public class RoomController {
     private TextField quantityTxt;
     @FXML
     private TableColumn<?, ?> roomTypeIdCol;
+
+    @FXML
+    private TableColumn<?, ?> accomadationssCol;
+
     @FXML
     private TextField roomTypeIdTxt;
     @FXML
@@ -60,7 +65,7 @@ public class RoomController {
     @FXML
     void deleteBtnOnACtion(ActionEvent event) {
 
-        boolean isdeleted=roomService.deleteRoom(new RoomDTO(
+        boolean isdeleted = roomService.deleteRoom(new RoomDTO(
                 roomTypeIdTxt.getText(),
                 typeTxt.getText(),
                 keyMoneyTxt.getText(),
@@ -68,14 +73,15 @@ public class RoomController {
                 Integer.parseInt(accomadationsTxt.getText())
         ));
 
-        if (isdeleted){
+        if (isdeleted) {
+            NotificationController.animationMesseage("/assets/tick.gif", "Room Deleted Sucessfully", "Room");
             getAll();
-                    roomTypeIdTxt.setText("");
-                    typeTxt.setText("");
-                    keyMoneyTxt.setText("");
-                    quantityTxt.setText("");
-                    accomadationsTxt.setText("");
-        }else {
+            roomTypeIdTxt.setText("");
+            typeTxt.setText("");
+            keyMoneyTxt.setText("");
+            quantityTxt.setText("");
+            accomadationsTxt.setText("");
+        } else {
             System.out.println("not deleted");
         }
 
@@ -93,6 +99,7 @@ public class RoomController {
         ));
 
         if (isSaved) {
+            NotificationController.animationMesseage("/assets/tick.gif", "Room Saved Sucessfully", "Room");
             getAll();
             roomTypeIdTxt.setText("");
             typeTxt.setText("");
@@ -106,7 +113,7 @@ public class RoomController {
 
     @FXML
     void updateBtnOnAction(ActionEvent event) {
-        boolean isUpdated=roomService.updateRoom(new RoomDTO(
+        boolean isUpdated = roomService.updateRoom(new RoomDTO(
                 roomTypeIdTxt.getText(),
                 typeTxt.getText(),
                 keyMoneyTxt.getText(),
@@ -114,14 +121,15 @@ public class RoomController {
                 Integer.parseInt(accomadationsTxt.getText())
         ));
 
-        if(isUpdated){
+        if (isUpdated) {
+            NotificationController.animationMesseage("/assets/tick.gif", "Room Updated Sucessfully", "Room");
             getAll();
             roomTypeIdTxt.setText("");
             typeTxt.setText("");
             keyMoneyTxt.setText("");
             quantityTxt.setText("");
             accomadationsTxt.setText("");
-        }else{
+        } else {
             System.out.println("not updated");
         }
 
@@ -138,7 +146,7 @@ public class RoomController {
         ObservableList<RoomTM> list = FXCollections.observableArrayList();
 
         for (RoomDTO roomDTO : roomDTOList) {
-            list.add(new RoomTM(roomDTO.getRoomTypeId(), roomDTO.getType(), roomDTO.getKeyMoney(), roomDTO.getQty()));
+            list.add(new RoomTM(roomDTO.getRoomTypeId(), roomDTO.getType(), roomDTO.getKeyMoney(), roomDTO.getQty(), roomDTO.getAccomadation()));
         }
         roomTbl.setItems(list);
 
@@ -149,6 +157,8 @@ public class RoomController {
         tupeCOl.setCellValueFactory(new PropertyValueFactory<>("type"));
         keyMpneyCol.setCellValueFactory(new PropertyValueFactory<>("keyMoney"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        accomadationssCol.setCellValueFactory(new PropertyValueFactory<>("accomadations"));
+
 
     }
 
@@ -161,6 +171,7 @@ public class RoomController {
         typeTxt.setText(columns.get(1).getCellData(row).toString());
         keyMoneyTxt.setText(columns.get(2).getCellData(row).toString());
         quantityTxt.setText(columns.get(3).getCellData(row).toString());
+        accomadationsTxt.setText(columns.get(4).getCellData(row).toString());
     }
 
     @FXML

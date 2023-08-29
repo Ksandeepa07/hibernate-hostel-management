@@ -45,22 +45,22 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="manageRoomBtn" buttonType="RAISED" layoutX="41.0" layoutY="477.0" onAction="#manageRoomBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Manage Rooms" textFill="WHITE">
+      <JFXButton fx:id="manageRoomBtn" buttonType="RAISED" layoutX="41.0" layoutY="501.0" onAction="#manageRoomBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Manage Rooms" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="pendingPapymentsBtn" buttonType="RAISED" layoutX="41.0" layoutY="736.0" onAction="#pendingPapymentsBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Pending Payments" textFill="WHITE">
+      <JFXButton fx:id="pendingPapymentsBtn" buttonType="RAISED" layoutX="41.0" layoutY="657.0" onAction="#pendingPapymentsBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Pending Payments" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="managestudentsBtn" buttonType="RAISED" layoutX="41.0" layoutY="602.0" onAction="#managestudentsBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Manage Students" textFill="WHITE">
+      <JFXButton fx:id="managestudentsBtn" buttonType="RAISED" layoutX="341.0" layoutY="502.0" onAction="#managestudentsBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Manage Students" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="resevationBtn" buttonType="RAISED" layoutX="41.0" layoutY="347.0" onAction="#resevationBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Make Reservation" textFill="WHITE">
+      <JFXButton fx:id="resevationBtn" buttonType="RAISED" layoutX="341.0" layoutY="348.0" onAction="#resevationBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Make Reservation" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -105,10 +105,15 @@
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="scrolPane" layoutX="534.0" layoutY="331.0" prefHeight="494.0" prefWidth="384.0">
+      <ScrollPane fx:id="scrolPane" layoutX="915.0" layoutY="320.0" prefHeight="494.0" prefWidth="384.0">
          <content>
             <VBox fx:id="VBoxMain" prefHeight="491.0" prefWidth="385.0" />
          </content>
       </ScrollPane>
+      <JFXButton fx:id="updatePwBtn" buttonType="RAISED" layoutX="46.0" layoutY="353.0" onAction="#updatePwBtnOnAction" prefHeight="84.0" prefWidth="171.0" style="-fx-background-color: black;" text="Update Password" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

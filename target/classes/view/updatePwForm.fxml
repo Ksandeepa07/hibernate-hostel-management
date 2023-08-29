@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="444.0" prefWidth="626.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.UpdatePwController">
+   <children>
+      <JFXButton fx:id="updateBtn" buttonType="RAISED" layoutX="379.0" layoutY="314.0" onAction="#updateBtnOnAction" prefHeight="24.0" prefWidth="78.0" style="-fx-background-color: #778899;" text="Update" textFill="#ebe1e1">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <TextField fx:id="usernameTxt" layoutX="151.0" layoutY="149.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-width: 2; -fx-border-color: black black  #778899 black;" styleClass="textfiled" stylesheets="@../style/style.css">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="passwordTxt" layoutX="149.0" layoutY="252.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-color: black black  #778899 black; -fx-border-width: 2;" styleClass="textfiled" stylesheets="@../style/style.css">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </TextField>
+      <Label layoutX="154.0" layoutY="119.0" text="Username *" textFill="LIGHTSLATEGRAY">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="152.0" layoutY="222.0" text="Password *" textFill="LIGHTSLATEGRAY">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
