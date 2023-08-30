@@ -5,3 +5,9 @@
     -fx-text-fill: white;
 
 }
+
+.textfiled-borders{
+    -fx-background-color: transparent;
+    -fx-border-color:black;
+    -fx-border-width: 0 0 2 0;
+}

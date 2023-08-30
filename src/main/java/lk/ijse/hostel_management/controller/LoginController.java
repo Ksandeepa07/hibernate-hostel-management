@@ -6,7 +6,10 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.ijse.hostel_management.controller.util.NotificationController;
@@ -23,21 +26,31 @@ public class LoginController {
     static String userId;
     LoginService loginService = ServiceFactory.getInstance().getService(ServiceFactory.serviceTypes.login);
     @FXML
-    private ResourceBundle resources;
-    @FXML
-    private URL location;
-    @FXML
     private AnchorPane ancpane;
-    @FXML
-    private JFXButton loginBtn;
-    @FXML
-    private TextField passwordTxt;
-    @FXML
-    private TextField usernameTxt;
-    @FXML
-    private TextField userIdTxt;
+
     @FXML
     private Hyperlink dontHaveAnAccount;
+
+    @FXML
+    private ImageView hidePwImg;
+
+    @FXML
+    private JFXButton loginBtn;
+
+    @FXML
+    private PasswordField passwordTxt;
+
+    @FXML
+    private TextField passwordshowTxt;
+
+    @FXML
+    private ImageView showPwImg;
+
+    @FXML
+    private TextField userIdTxt;
+
+    @FXML
+    private TextField usernameTxt;
 
     @FXML
     void loginBtnOnAction(ActionEvent event) {
@@ -102,6 +115,8 @@ public class LoginController {
             }
 
         }
+
+
 //         loginBtn.getScene().getWindow().hide();
 //        StageController.changeStage("/view/dashboardForm.fxml","Dashboard");
 
@@ -116,10 +131,31 @@ public class LoginController {
 
     @FXML
     void initialize() {
+        passwordshowTxt.setVisible(false);
+        hidePwImg.setVisible(false);
         assert ancpane != null : "fx:id=\"ancpane\" was not injected: check your FXML file 'userForm.fxml'.";
         assert loginBtn != null : "fx:id=\"loginBtn\" was not injected: check your FXML file 'userForm.fxml'.";
         assert passwordTxt != null : "fx:id=\"passwordTxt\" was not injected: check your FXML file 'userForm.fxml'.";
         assert usernameTxt != null : "fx:id=\"usernameTxt\" was not injected: check your FXML file 'userForm.fxml'.";
+
+    }
+
+    public void hidePasswordOnAction(MouseEvent mouseEvent) {
+        passwordshowTxt.setVisible(false);
+        hidePwImg.setVisible(false);
+        passwordTxt.setVisible(true);
+        showPwImg.setVisible(true);
+        passwordTxt.setText(passwordshowTxt.getText());
+
+
+    }
+
+    public void showPasswordOnAction(MouseEvent mouseEvent) {
+        passwordTxt.setVisible(false);
+        showPwImg.setVisible(false);
+        passwordshowTxt.setVisible(true);
+        hidePwImg.setVisible(true);
+        passwordshowTxt.setText(passwordTxt.getText());
 
     }
 

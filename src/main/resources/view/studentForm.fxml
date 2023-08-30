@@ -19,10 +19,11 @@
                   <Font name="System Bold" size="48.0" />
                </font>
             </Label>
+            <TextField layoutX="924.0" layoutY="79.0" prefHeight="24.0" prefWidth="255.0" />
          </children>
       </AnchorPane>
-      <TextField fx:id="nameTxt" layoutX="424.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" />
-      <TextField fx:id="addressTxt" layoutX="743.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" />
+      <TextField fx:id="nameTxt" layoutX="424.0" layoutY="263.0" onKeyTyped="#nameKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
+      <TextField fx:id="addressTxt" layoutX="743.0" layoutY="263.0" onKeyTyped="#addressKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
       <Label layoutX="424.0" layoutY="223.0" text="Student Name *">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -53,17 +54,17 @@
             <TableColumn fx:id="genderCol" prefWidth="137.0" text="Gender" />
          </columns>
       </TableView>
-      <JFXButton layoutX="1040.0" layoutY="263.0" onAction="#saveBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #FF0000;" text="Save" textFill="WHITE">
+      <JFXButton fx:id="saveBtn" layoutX="1040.0" layoutY="263.0" onAction="#saveBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #FF0000;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="1040.0" layoutY="372.0" onAction="#deleteBtnOnACtion" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #2E8B57;" text="Delete" textFill="WHITE">
+      <JFXButton fx:id="deleteBtn" layoutX="1040.0" layoutY="372.0" onAction="#deleteBtnOnACtion" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #2E8B57;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="1040.0" layoutY="320.0" onAction="#updateBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #4169E1;" text="Update" textFill="WHITE">
+      <JFXButton fx:id="updateBtn" layoutX="1040.0" layoutY="320.0" onAction="#updateBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #4169E1;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
@@ -73,19 +74,19 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="studentIdTxt" layoutX="111.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" />
-      <TextField fx:id="contactTxt" layoutX="111.0" layoutY="372.0" prefHeight="32.0" prefWidth="236.0" />
+      <TextField fx:id="studentIdTxt" layoutX="111.0" layoutY="263.0" onKeyTyped="#studentIdKeytyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
+      <TextField fx:id="contactTxt" layoutX="111.0" layoutY="372.0" onKeyTyped="#contactKeTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
       <Label layoutX="117.0" layoutY="342.0" text="Contact *">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="117.0" layoutY="223.0" text="Student Id * ">
+      <Label layoutX="110.0" layoutY="223.0" text="Student Id * ">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="genderCmb" layoutX="743.0" layoutY="372.0" prefHeight="32.0" prefWidth="236.0" />
-      <DatePicker fx:id="dobTxt" layoutX="427.0" layoutY="375.0" prefHeight="32.0" prefWidth="236.0" />
+      <ComboBox fx:id="genderCmb" layoutX="743.0" layoutY="372.0" onKeyTyped="#genderKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
+      <DatePicker fx:id="dobTxt" layoutX="427.0" layoutY="375.0" onKeyTyped="#dobKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
    </children>
 </AnchorPane>

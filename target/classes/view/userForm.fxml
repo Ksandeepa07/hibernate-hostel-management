@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -22,7 +23,7 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></TextField>
-            <TextField fx:id="passwordTxt" layoutX="174.0" layoutY="467.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-color: black black  #778899 black; -fx-border-width: 2;" styleClass="textfiled" stylesheets="@../style/style.css">
+            <TextField fx:id="passwordshowTxt" layoutX="174.0" layoutY="467.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-color: black black  #778899 black; -fx-border-width: 2;" styleClass="textfiled" stylesheets="@../style/style.css">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></TextField>
@@ -55,6 +56,17 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
+            <PasswordField fx:id="passwordTxt" layoutX="176.0" layoutY="471.0" prefHeight="24.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-color: black black  #778899 black; -fx-border-width: 2;" styleClass="textfiled" stylesheets="@../style/style.css" />
+            <ImageView fx:id="hidePwImg" fitHeight="39.0" fitWidth="39.0" layoutX="433.0" layoutY="453.0" onMouseClicked="#hidePasswordOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hide.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="showPwImg" fitHeight="39.0" fitWidth="50.0" layoutX="433.0" layoutY="452.0" onMouseClicked="#showPasswordOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/show.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <ImageView fitHeight="639.0" fitWidth="483.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">

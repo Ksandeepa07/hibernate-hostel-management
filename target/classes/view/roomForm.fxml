@@ -5,21 +5,34 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="ancPane" prefHeight="902.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management.controller.RoomController">
    <children>
-      <TextField fx:id="roomTypeIdTxt" layoutX="111.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" />
-      <TextField fx:id="typeTxt" layoutX="111.0" layoutY="372.0" prefHeight="32.0" prefWidth="236.0" />
-      <TextField fx:id="quantityTxt" layoutX="449.0" layoutY="372.0" prefHeight="32.0" prefWidth="236.0" />
-      <TextField fx:id="keyMoneyTxt" layoutX="449.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" />
+      <TextField fx:id="roomTypeIdTxt" layoutX="111.0" layoutY="263.0" onKeyTyped="#idKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css">
+         <tooltip>
+            <Tooltip text="minimun 4 letters" />
+         </tooltip></TextField>
+      <TextField fx:id="typeTxt" layoutX="111.0" layoutY="372.0" onKeyTyped="#typeKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css">
+         <tooltip>
+            <Tooltip text="minimun 4 letters" />
+         </tooltip></TextField>
+      <TextField fx:id="quantityTxt" layoutX="449.0" layoutY="372.0" onKeyTyped="#quantityKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css">
+         <tooltip>
+            <Tooltip text="no letters allowed" />
+         </tooltip></TextField>
+      <TextField fx:id="keyMoneyTxt" layoutX="449.0" layoutY="263.0" onKeyTyped="#moneyKeyTyped" prefHeight="32.0" prefWidth="236.0" promptText=" " styleClass="textfiled-borders" stylesheets="@../style/style.css">
+         <tooltip>
+            <Tooltip text="no letters allowed" />
+         </tooltip></TextField>
       <Label layoutX="111.0" layoutY="223.0" text="Room Type Id * ">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="111.0" layoutY="339.0" text=" Type * ">
+      <Label layoutX="107.0" layoutY="339.0" text=" Type * ">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -43,17 +56,17 @@
             <TableColumn fx:id="accomadationssCol" prefWidth="153.0" text="Accomadations" />
         </columns>
       </TableView>
-      <JFXButton layoutX="1091.0" layoutY="263.0" onAction="#saveBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #FF0000;" text="Save" textFill="WHITE">
+      <JFXButton fx:id="saveBtn" layoutX="1091.0" layoutY="263.0" onAction="#saveBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #FF0000;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="1091.0" layoutY="372.0" onAction="#deleteBtnOnACtion" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #2E8B57;" text="Delete" textFill="WHITE">
+      <JFXButton fx:id="deleteBtn" layoutX="1091.0" layoutY="372.0" onAction="#deleteBtnOnACtion" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #2E8B57;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="1091.0" layoutY="320.0" onAction="#updateBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #4169E1;" text="Update" textFill="WHITE">
+      <JFXButton fx:id="updateBtn" layoutX="1091.0" layoutY="320.0" onAction="#updateBtnOnAction" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #4169E1;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
@@ -72,7 +85,10 @@
             </Label>
          </children>
       </AnchorPane>
-      <TextField fx:id="accomadationsTxt" layoutX="782.0" layoutY="262.0" prefHeight="32.0" prefWidth="236.0" />
+      <TextField fx:id="accomadationsTxt" layoutX="782.0" layoutY="262.0" onKeyTyped="#acccomadationKetTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css">
+         <tooltip>
+            <Tooltip text="no letters allowed" />
+         </tooltip></TextField>
       <Label layoutX="782.0" layoutY="222.0" text="Accomadations *">
          <font>
             <Font name="System Bold" size="18.0" />

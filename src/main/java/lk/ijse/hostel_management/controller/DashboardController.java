@@ -170,93 +170,93 @@ public class DashboardController {
             }
         }
 
-        if(roomDTOList.size()==4){
-            if (roomDTOList.get(0).getQty()==0) {
-                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
-                type1QtyLbl.setText("Not Available");
-            }else{
-                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
-                type1QtyLbl.setText("Available");
-            }
-
-            if (roomDTOList.get(1).getQty()==0) {
-                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
-                type1QtyLbl2.setText("Not Available");
-            }else {
-                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
-                type1QtyLbl2.setText("Available");
-            }
-
-            if (roomDTOList.get(2).getQty()==0) {
-                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
-                type1QtyLbl13.setText("Not Available");
-            }else{
-                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
-                type1QtyLbl13.setText("Available");
-            }
-
-            if (roomDTOList.get(4).getQty()==0) {
-                type1NameLbl4.setText(roomDTOList.get(3).getRoomTypeId());
-                type1QtyLbl114.setText("Not Available");
-            }else{
-                type1NameLbl4.setText(roomDTOList.get(3).getRoomTypeId());
-                type1QtyLbl114.setText("Available");
-            }
-
-        } else if(roomDTOList.size()==3) {
-
-            if (roomDTOList.get(0).getQty()==0) {
-                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
-                type1QtyLbl.setText("Not Available");
-            }else{
-                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
-                type1QtyLbl.setText("Available");
-            }
-
-            if (roomDTOList.get(1).getQty()==0) {
-                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
-                type1QtyLbl2.setText("Not Available");
-            }else {
-                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
-                type1QtyLbl2.setText("Available");
-            }
-
-            if (roomDTOList.get(2).getQty()==0) {
-                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
-                type1QtyLbl13.setText("Not Available");
-            }else{
-                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
-                type1QtyLbl13.setText("Available");
-            }
-
-        }else if(roomDTOList.size()==2) {
-
-            if (roomDTOList.get(0).getQty()==0) {
-                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
-                type1QtyLbl.setText("Not Available");
-            }else{
-                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
-                type1QtyLbl.setText("Available");
-            }
-
-            if (roomDTOList.get(1).getQty()==0) {
-                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
-                type1QtyLbl2.setText("Not Available");
-            }else {
-                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
-                type1QtyLbl2.setText("Available");
-            }
-
-        }else if(roomDTOList.size()==1) {
-
-            if (roomDTOList.get(0).getQty()==0) {
-                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
-                type1QtyLbl.setText("Not Available");
-            }else{
-                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
-                type1QtyLbl.setText("Available");
-            }
-        }
+//        if(roomDTOList.size()==4){
+//            if (roomDTOList.get(0).getQty()==0) {
+//                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+//                type1QtyLbl.setText("Not Available");
+//            }else{
+//                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+//                type1QtyLbl.setText("Available");
+//            }
+//
+//            if (roomDTOList.get(1).getQty()==0) {
+//                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+//                type1QtyLbl2.setText("Not Available");
+//            }else {
+//                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+//                type1QtyLbl2.setText("Available");
+//            }
+//
+//            if (roomDTOList.get(2).getQty()==0) {
+//                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
+//                type1QtyLbl13.setText("Not Available");
+//            }else{
+//                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
+//                type1QtyLbl13.setText("Available");
+//            }
+//
+//            if (roomDTOList.get(4).getQty()==0) {
+//                type1NameLbl4.setText(roomDTOList.get(3).getRoomTypeId());
+//                type1QtyLbl114.setText("Not Available");
+//            }else{
+//                type1NameLbl4.setText(roomDTOList.get(3).getRoomTypeId());
+//                type1QtyLbl114.setText("Available");
+//            }
+//
+//        } else if(roomDTOList.size()==3) {
+//
+//            if (roomDTOList.get(0).getQty()==0) {
+//                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+//                type1QtyLbl.setText("Not Available");
+//            }else{
+//                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+//                type1QtyLbl.setText("Available");
+//            }
+//
+//            if (roomDTOList.get(1).getQty()==0) {
+//                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+//                type1QtyLbl2.setText("Not Available");
+//            }else {
+//                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+//                type1QtyLbl2.setText("Available");
+//            }
+//
+//            if (roomDTOList.get(2).getQty()==0) {
+//                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
+//                type1QtyLbl13.setText("Not Available");
+//            }else{
+//                type1NameLbl3.setText(roomDTOList.get(2).getRoomTypeId());
+//                type1QtyLbl13.setText("Available");
+//            }
+//
+//        }else if(roomDTOList.size()==2) {
+//
+//            if (roomDTOList.get(0).getQty()==0) {
+//                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+//                type1QtyLbl.setText("Not Available");
+//            }else{
+//                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+//                type1QtyLbl.setText("Available");
+//            }
+//
+//            if (roomDTOList.get(1).getQty()==0) {
+//                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+//                type1QtyLbl2.setText("Not Available");
+//            }else {
+//                type1NameLbl2.setText(roomDTOList.get(1).getRoomTypeId());
+//                type1QtyLbl2.setText("Available");
+//            }
+//
+//        }else if(roomDTOList.size()==1) {
+//
+//            if (roomDTOList.get(0).getQty()==0) {
+//                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+//                type1QtyLbl.setText("Not Available");
+//            }else{
+//                type1NameLbl.setText(roomDTOList.get(0).getRoomTypeId());
+//                type1QtyLbl.setText("Available");
+//            }
+//        }
     }
 
     @FXML
