@@ -80,6 +80,7 @@ public class StudentServiceImpl implements StudentService<StudentDTO,String,Inte
 
     @Override
     public boolean deleteStudent(StudentDTO studentDTO) {
+        System.out.println(studentDTO);
         Session session= SessionFactoryConfig.getInstance().getSession();
         Transaction transaction=session.beginTransaction();
 
@@ -142,6 +143,30 @@ public class StudentServiceImpl implements StudentService<StudentDTO,String,Inte
 
     @Override
     public StudentDTO searchStudent(String id) {
-        return null;
+       Session session=SessionFactoryConfig.getInstance().getSession();
+       Transaction transaction=session.beginTransaction();
+
+       try {
+           repository.setSession(session);
+           Student student=repository.searchIdByString(id);
+           StudentDTO studentDTO=new StudentDTO(
+                   student.getStudentId(),
+                   student.getStudentName(),
+                   student.getAddress(),
+                   student.getContact(),
+                   student.getDob().toString(),
+                   student.getGender()
+           );
+           System.out.println(student);
+           transaction.commit();
+           session.close();
+           return studentDTO;
+
+       }catch (Exception e){
+          transaction.rollback();
+           session.close();
+           return null;
+
+       }
     }
 }

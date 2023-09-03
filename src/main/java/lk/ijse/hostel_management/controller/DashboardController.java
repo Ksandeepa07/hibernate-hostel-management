@@ -146,7 +146,7 @@ public class DashboardController {
         List<RoomDTO> roomDTOList=homeService.getAllRooms();
         for (RoomDTO roomDTO : roomDTOList) {
             if (roomDTO.getQty()==0) {
-                Text text = new Text(roomDTO.getRoomTypeId() +"   :      Not Availble");
+                Text text = new Text(roomDTO.getRoomTypeId() +"   :      Not Availble         "+roomDTO.getQty());
                 text.setFill(Color.WHITE);
                 text.setStyle("-fx-font-size: 14");
                 TextFlow textFlow = new TextFlow(text);
@@ -157,7 +157,7 @@ public class DashboardController {
                 vBox.getChildren().add(textFlow);
                 VBoxMain.getChildren().add(vBox);
             }else{
-                Text text = new Text(roomDTO.getRoomTypeId() +"   :      Availble");
+                Text text = new Text(""+roomDTO.getRoomTypeId() +"   :      Availble                "+roomDTO.getQty());
                 text.setFill(Color.WHITE);
                 text.setStyle("-fx-font-size: 14");
                 TextFlow textFlow = new TextFlow(text);

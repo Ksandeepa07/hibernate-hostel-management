@@ -22,11 +22,13 @@
             <TextField fx:id="usernameTxt" layoutX="176.0" layoutY="364.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-width: 2; -fx-border-color: black black  #778899 black;" styleClass="textfiled" stylesheets="@../style/style.css">
                <font>
                   <Font name="System Bold" size="13.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <TextField fx:id="passwordshowTxt" layoutX="174.0" layoutY="467.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-color: black black  #778899 black; -fx-border-width: 2;" styleClass="textfiled" stylesheets="@../style/style.css">
                <font>
                   <Font name="System Bold" size="13.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <Label layoutX="179.0" layoutY="334.0" text="Username *" textFill="LIGHTSLATEGRAY">
                <font>
                   <Font name="System Bold" size="19.0" />
@@ -50,7 +52,8 @@
             <TextField fx:id="userIdTxt" layoutX="176.0" layoutY="254.0" prefHeight="32.0" prefWidth="307.0" style="-fx-background-color: none; -fx-border-width: 2; -fx-border-color: black black  #778899 black;" styleClass="textfiled" stylesheets="@../style/style.css">
                <font>
                   <Font name="System Bold" size="13.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <Label layoutX="180.0" layoutY="224.0" text="User Id *" textFill="LIGHTSLATEGRAY">
                <font>
                   <Font name="System Bold" size="19.0" />

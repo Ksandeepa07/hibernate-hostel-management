@@ -117,8 +117,8 @@ public class LoginController {
         }
 
 
-//         loginBtn.getScene().getWindow().hide();
-//        StageController.changeStage("/view/dashboardForm.fxml","Dashboard");
+         loginBtn.getScene().getWindow().hide();
+        StageController.changeStage("/view/dashboardForm.fxml","Dashboard");
 
 
     }

@@ -16,7 +16,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Session session = SessionFactoryConfig.getInstance().getSession();
-        URL resource = Launcher.class.getResource("view/userForm.fxml");
+        URL resource = Launcher.class.getResource("/view/userForm.fxml");
         Parent load = FXMLLoader.load(resource);
         stage.setScene(new Scene(load));
         stage.setTitle("Loading Page");

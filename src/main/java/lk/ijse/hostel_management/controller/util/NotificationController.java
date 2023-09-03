@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -22,13 +23,20 @@ import java.util.Optional;
 public class NotificationController {
     public static void ErrorMasseage(String messeage) {
 
+        VBox vBox=new VBox();
+//        Label label=new Label(messeage);
+        Text text=new Text(messeage);
+        text.setFill(Color.WHITE);
+        TextFlow textFlow=new TextFlow(text);
+        vBox.getChildren().add(textFlow);
+
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);
-        alert.setContentText(messeage);
+        alert.getDialogPane().setContent(vBox);
 
         alert.getDialogPane().setPrefSize(300, 150);
-        alert.getDialogPane().setStyle("-fx-background-color: Grey; ");
+        alert.getDialogPane().setStyle("-fx-background-color: black ");
         alert.getDialogPane().setHeaderText(null);
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();

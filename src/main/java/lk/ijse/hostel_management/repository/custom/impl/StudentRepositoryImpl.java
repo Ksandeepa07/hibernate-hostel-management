@@ -1,5 +1,6 @@
 package lk.ijse.hostel_management.repository.custom.impl;
 
+import lk.ijse.hostel_management.entity.Room;
 import lk.ijse.hostel_management.entity.Student;
 import lk.ijse.hostel_management.repository.custom.StudentRepository;
 import org.hibernate.Session;
@@ -41,7 +42,11 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public Student searchIdByString(String id) {
-        return null;
+        Query<Student> query = session.createQuery("FROM Student WHERE studentId = :sId", Student.class);
+        query.setParameter("sId", id);
+        Student student = query.uniqueResult();
+        System.out.println(student);
+        return student;
     }
 
     @Override

@@ -48,7 +48,7 @@ public class DataValidateController {
     }
 
     public static boolean quantityValidate(String quantity) {
-        String customerRegex = "^[1-9][0-9]*$";
+        String customerRegex = "^[0-9][0-9]*$";
         Pattern pattern = Pattern.compile(customerRegex);
         Matcher matcher = pattern.matcher(quantity);
         return matcher.matches();

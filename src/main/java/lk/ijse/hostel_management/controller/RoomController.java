@@ -11,27 +11,26 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hostel_management.controller.util.DataValidateController;
 import lk.ijse.hostel_management.controller.util.NotificationController;
 import lk.ijse.hostel_management.controller.util.StageController;
 import lk.ijse.hostel_management.dto.RoomDTO;
+import lk.ijse.hostel_management.dto.StudentDTO;
 import lk.ijse.hostel_management.service.ServiceFactory;
 import lk.ijse.hostel_management.service.custom.RoomService;
 import lk.ijse.hostel_management.view.tdm.RoomTM;
+import lk.ijse.hostel_management.view.tdm.StudentTM;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class RoomController {
 
     RoomService roomService = ServiceFactory.getInstance().getService(ServiceFactory.serviceTypes.Room);
-    boolean isIdValid;
-    boolean isTypeVlaid;
-    boolean isQtyValid;
-    boolean isAccomValid;
-    boolean isMoneyValid;
     @FXML
     private ResourceBundle resources;
     @FXML
@@ -68,6 +67,11 @@ public class RoomController {
     private JFXButton deleteBtn;
     @FXML
     private TextField accomadationsTxt;
+    @FXML
+    private TextField searchTxt;
+
+
+    List<RoomDTO> roomDTOList;
 
     @FXML
     void deleteBtnOnACtion(ActionEvent event) {
@@ -81,7 +85,7 @@ public class RoomController {
             accomadationsTxt.setStyle("-fx-border-color: red");
         } else {
             if (DataValidateController.nameValidate(roomTypeIdTxt.getText()) & DataValidateController.nameValidate(typeTxt.getText())
-                    & DataValidateController.quantityValidate(quantityTxt.getText()) & DataValidateController.priceValidate(keyMoneyTxt.getText()) & DataValidateController.quantityValidate(accomadationsTxt.getText())) {
+                    & DataValidateController.quantityValidate(quantityTxt.getText()) &DataValidateController.priceValidate(keyMoneyTxt.getText()) & DataValidateController.quantityValidate(accomadationsTxt.getText())) {
                 boolean isdeleted = roomService.deleteRoom(new RoomDTO(
                         roomTypeIdTxt.getText(),
                         typeTxt.getText(),
@@ -104,6 +108,9 @@ public class RoomController {
                     quantityTxt.setStyle("-fx-border-color: black");
                     keyMoneyTxt.setStyle("-fx-border-color: black");
                     accomadationsTxt.setStyle("-fx-border-color: black");
+
+                    updateBtn.setDisable(true);
+                    deleteBtn.setDisable(true);
                 } else {
                     System.out.println("not deleted");
                 }
@@ -116,6 +123,13 @@ public class RoomController {
 
     @FXML
     void saveBtnOnAction(ActionEvent event) {
+
+        for (RoomDTO roomDTO : roomDTOList) {
+            if (roomTypeIdTxt.getText().equals(roomDTO.getRoomTypeId())){
+                NotificationController.ErrorMasseage("This id is already exits !");
+                return;
+            }
+        }
 
         if (roomTypeIdTxt.getText().isEmpty() | typeTxt.getText().isEmpty() | keyMoneyTxt.getText().isEmpty() | quantityTxt.getText().isEmpty() | accomadationsTxt.getText().isEmpty()) {
               if(roomTypeIdTxt.getText().isEmpty() & typeTxt.getText().isEmpty() & keyMoneyTxt.getText().isEmpty() &quantityTxt.getText().isEmpty() & accomadationsTxt.getText().isEmpty()){
@@ -132,7 +146,7 @@ public class RoomController {
 
         } else {
 
-            if (DataValidateController.nameValidate(roomTypeIdTxt.getText()) & DataValidateController.nameValidate(typeTxt.getText())
+            if (DataValidateController.nameValidate(typeTxt.getText())
                     & DataValidateController.quantityValidate(quantityTxt.getText()) & DataValidateController.priceValidate(keyMoneyTxt.getText()) & DataValidateController.quantityValidate(accomadationsTxt.getText())) {
                 boolean isSaved = roomService.saveRoom(new RoomDTO(
                         roomTypeIdTxt.getText(),
@@ -157,6 +171,9 @@ public class RoomController {
                     keyMoneyTxt.setStyle("-fx-border-color: black");
                     accomadationsTxt.setStyle("-fx-border-color: black");
 
+                    updateBtn.setDisable(true);
+                    deleteBtn.setDisable(true);
+
                 } else {
                     System.out.println("not saved");
                 }
@@ -176,7 +193,7 @@ public class RoomController {
 
         } else {
 
-            if (DataValidateController.nameValidate(roomTypeIdTxt.getText()) & DataValidateController.nameValidate(typeTxt.getText())
+            if (DataValidateController.nameValidate(typeTxt.getText())
                     & DataValidateController.quantityValidate(quantityTxt.getText()) & DataValidateController.priceValidate(keyMoneyTxt.getText()) & DataValidateController.quantityValidate(accomadationsTxt.getText())) {
                 boolean isUpdated = roomService.updateRoom(new RoomDTO(
                         roomTypeIdTxt.getText(),
@@ -200,12 +217,27 @@ public class RoomController {
                     quantityTxt.setStyle("-fx-border-color: black");
                     keyMoneyTxt.setStyle("-fx-border-color: black");
                     accomadationsTxt.setStyle("-fx-border-color: black");
+
+                    updateBtn.setDisable(true);
+                    deleteBtn.setDisable(true);
                 } else {
                     System.out.println("not updated");
                 }
-            } else {
+
+            }else {
                 NotificationController.ErrorMasseage("please validate all fields");
             }
+
+//            if (DataValidateController.nameValidate(typeTxt.getText())){
+//
+//            }else if(DataValidateController.quantityValidate(quantityTxt.getText())){
+//
+//            }else if(DataValidateController.priceValidate(keyMoneyTxt.getText())){
+//
+//            }else if(DataValidateController.quantityValidate(accomadationsTxt.getText())){
+//
+//            }
+
 
         }
     }
@@ -217,7 +249,7 @@ public class RoomController {
     }
 
     void getAll() {
-        List<RoomDTO> roomDTOList = roomService.getAllRooms();
+        roomDTOList = roomService.getAllRooms();
         ObservableList<RoomTM> list = FXCollections.observableArrayList();
 
         for (RoomDTO roomDTO : roomDTOList) {
@@ -238,6 +270,8 @@ public class RoomController {
     }
 
     public void tblOnAction(javafx.scene.input.MouseEvent mouseEvent) {
+        updateBtn.setDisable(false);
+        deleteBtn.setDisable(false);
         TablePosition pos = roomTbl.getSelectionModel().getSelectedCells().get(0);
         int row = pos.getRow();
         ObservableList<TableColumn<RoomTM, ?>> columns = roomTbl.getColumns();
@@ -278,7 +312,62 @@ public class RoomController {
     }
 
     @FXML
+    void searchTable(KeyEvent event) {
+        String searchValue = searchTxt.getText().trim();
+        ObservableList<RoomTM> obList= FXCollections.observableArrayList();
+        List<RoomDTO> load = roomService.getAllRooms();
+        for (RoomDTO roomDTO : load) {
+            obList.add(new RoomTM(roomDTO.getRoomTypeId(),roomDTO.getType(),roomDTO.getKeyMoney(),roomDTO.getQty(),roomDTO.getAccomadation()));
+        }
+
+        if (!searchValue.isEmpty()) {
+            ObservableList<RoomTM> filteredData = obList.filtered(new Predicate<RoomTM>() {
+                @Override
+                public boolean test(RoomTM roomTM) {
+                    return String.valueOf(roomTM.getRoomTypeId()).toLowerCase().contains(searchValue.toLowerCase());
+                }
+            });
+            roomTbl.setItems(filteredData);
+        } else {
+            roomTbl.setItems(obList);
+        }
+
+    }
+
+    @FXML
+    void searchIconClickOnAction(MouseEvent event) {
+
+        for (RoomDTO roomDTO : roomDTOList) {
+            if (!searchTxt.getText().equals(roomDTO.getRoomTypeId())){
+                if (searchTxt.getText().isEmpty()){
+
+                }else {
+                    NotificationController.ErrorMasseage("please enter a valid room id to check !");
+                    return;
+                }
+
+            }
+
+        }
+        if (searchTxt.getText().isEmpty()){
+            NotificationController.ErrorMasseage("please enter a room id to check !");
+        }else {
+            RoomDTO roomDTO= (RoomDTO) roomService.searchRoom(searchTxt.getText());
+            roomTypeIdTxt.setText(roomDTO.getRoomTypeId());
+            typeTxt.setText(roomDTO.getType());
+            keyMoneyTxt.setText(roomDTO.getKeyMoney());
+            quantityTxt.setText(String.valueOf(roomDTO.getQty()));
+            accomadationsTxt.setText(String.valueOf(roomDTO.getAccomadation()));
+        }
+
+
+    }
+
+
+    @FXML
     void initialize() {
+        updateBtn.setDisable(true);
+        deleteBtn.setDisable(true);
 
         getAll();
         setCellValueFactory();
@@ -296,3 +385,7 @@ public class RoomController {
 
 
 }
+
+
+
+

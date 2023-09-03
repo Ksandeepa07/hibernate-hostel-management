@@ -17,11 +17,11 @@ public class RoomServiceImpl implements RoomService<RoomDTO, String> {
 
     @Override
     public boolean saveRoom(RoomDTO roomDTO) {
-        Session session= SessionFactoryConfig.getInstance().getSession();
-        Transaction transaction=session.beginTransaction();
-        try{
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
             repository.setSession(session);
-            boolean saved=repository.save(new Room(
+            boolean saved = repository.save(new Room(
                     roomDTO.getRoomTypeId(),
                     roomDTO.getType(),
                     roomDTO.getKeyMoney(),
@@ -31,7 +31,7 @@ public class RoomServiceImpl implements RoomService<RoomDTO, String> {
             transaction.commit();
             session.close();
             return saved;
-        }catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             session.close();
             return false;
@@ -42,23 +42,23 @@ public class RoomServiceImpl implements RoomService<RoomDTO, String> {
 
     @Override
     public boolean updateRoom(RoomDTO roomDTO) {
-        Session session=SessionFactoryConfig.getInstance().getSession();
-        Transaction transaction=session.beginTransaction();
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
 
-        try{
+        try {
             repository.setSession(session);
-            boolean isUpadted=repository.update(new Room(roomDTO.getRoomTypeId()
+            boolean isUpadted = repository.update(new Room(roomDTO.getRoomTypeId()
                     , roomDTO.getType()
                     , roomDTO.getKeyMoney()
                     , roomDTO.getQty()
-                    ,roomDTO.getAccomadation()
+                    , roomDTO.getAccomadation()
             ));
 
             transaction.commit();
             session.close();
             return isUpadted;
 
-        }catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             session.close();
             return false;
@@ -67,23 +67,23 @@ public class RoomServiceImpl implements RoomService<RoomDTO, String> {
 
     @Override
     public boolean deleteRoom(RoomDTO roomDTO) {
-        Session session=SessionFactoryConfig.getInstance().getSession();
-        Transaction transaction=session.beginTransaction();
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
 
-        try{
+        try {
             repository.setSession(session);
-           boolean isDeletd=repository.delete(new Room(roomDTO.getRoomTypeId()
+            boolean isDeletd = repository.delete(new Room(roomDTO.getRoomTypeId()
                     , roomDTO.getType()
                     , roomDTO.getKeyMoney()
                     , roomDTO.getQty()
-                   ,roomDTO.getAccomadation()
-           ));
+                    , roomDTO.getAccomadation()
+            ));
 
             transaction.commit();
             session.close();
             return isDeletd;
 
-        }catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             session.close();
             return false;
@@ -93,30 +93,56 @@ public class RoomServiceImpl implements RoomService<RoomDTO, String> {
 
     @Override
     public List<RoomDTO> getAllRooms() {
-        Session session=SessionFactoryConfig.getInstance().getSession();
-        Transaction transaction=session.beginTransaction();
-        try{
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
             repository.setSession(session);
-            List<Room> rooms=repository.getAll();
-            List<RoomDTO> roomDTOS=new ArrayList<>();
+            List<Room> rooms = repository.getAll();
+            List<RoomDTO> roomDTOS = new ArrayList<>();
 
             for (Room room : rooms) {
-               roomDTOS.add(new RoomDTO(room.getRoomId()
-                       ,room.getType()
-                       ,room.getKeyMoney()
-                       ,room.getQty()
-                       ,room.getAccomadation()
-               ));
+                roomDTOS.add(new RoomDTO(room.getRoomId()
+                        , room.getType()
+                        , room.getKeyMoney()
+                        , room.getQty()
+                        , room.getAccomadation()
+                ));
 
             }
             transaction.commit();
             session.close();
             return roomDTOS;
-        }catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             session.close();
             return null;
 
+        }
+    }
+
+    @Override
+    public RoomDTO searchRoom(String id) {
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        try {
+            repository.setSession(session);
+            Room room=repository.searchIdByString(id);
+            transaction.commit();
+            session.close();
+            return new RoomDTO(
+                    room.getRoomId(),
+                    room.getType(),
+                    room.getKeyMoney(),
+                    room.getQty(),
+                    room.getAccomadation()
+            );
+
+
+        }catch (Exception e){
+            transaction.rollback();
+            session.close();
+            return null;
         }
     }
 }

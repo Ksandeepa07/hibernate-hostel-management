@@ -7,6 +7,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -19,11 +22,22 @@
                   <Font name="System Bold" size="48.0" />
                </font>
             </Label>
-            <TextField layoutX="924.0" layoutY="79.0" prefHeight="24.0" prefWidth="255.0" />
+            <TextField fx:id="searchTxt" layoutX="929.0" layoutY="79.0" onKeyTyped="#searchTable" prefHeight="24.0" prefWidth="255.0" />
+            <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="1197.0" layoutY="75.0" onMouseClicked="#searchIconClickOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/search.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <TextField fx:id="nameTxt" layoutX="424.0" layoutY="263.0" onKeyTyped="#nameKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
-      <TextField fx:id="addressTxt" layoutX="743.0" layoutY="263.0" onKeyTyped="#addressKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
+      <TextField fx:id="nameTxt" layoutX="424.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css">
+         <tooltip>
+            <Tooltip text="minimum 4 letters" />
+         </tooltip></TextField>
+      <TextField fx:id="addressTxt" layoutX="743.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css">
+         <tooltip>
+            <Tooltip text="minimum 4 letters" />
+         </tooltip></TextField>
       <Label layoutX="424.0" layoutY="223.0" text="Student Name *">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -74,8 +88,8 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="studentIdTxt" layoutX="111.0" layoutY="263.0" onKeyTyped="#studentIdKeytyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
-      <TextField fx:id="contactTxt" layoutX="111.0" layoutY="372.0" onKeyTyped="#contactKeTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
+      <TextField fx:id="studentIdTxt" layoutX="111.0" layoutY="263.0" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
+      <TextField fx:id="contactTxt" layoutX="111.0" layoutY="372.0" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
       <Label layoutX="117.0" layoutY="342.0" text="Contact *">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -86,7 +100,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="genderCmb" layoutX="743.0" layoutY="372.0" onKeyTyped="#genderKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
-      <DatePicker fx:id="dobTxt" layoutX="427.0" layoutY="375.0" onKeyTyped="#dobKeyTyped" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
+      <ComboBox fx:id="genderCmb" layoutX="743.0" layoutY="372.0" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
+      <DatePicker fx:id="dobTxt" layoutX="427.0" layoutY="375.0" prefHeight="32.0" prefWidth="236.0" styleClass="textfiled-borders" stylesheets="@../style/style.css" />
    </children>
 </AnchorPane>

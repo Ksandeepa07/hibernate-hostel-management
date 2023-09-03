@@ -9,6 +9,7 @@ public interface RoomService<T,ID> extends SuperService {
    boolean updateRoom(T t);
    boolean deleteRoom(T t);
    List<T> getAllRooms();
+   T searchRoom(ID id);
 
 
 }

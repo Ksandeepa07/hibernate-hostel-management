@@ -19,9 +19,12 @@ import lk.ijse.hostel_management.service.custom.StudentService;
 import lk.ijse.hostel_management.view.tdm.StudentTM;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class StudentController {
 
@@ -88,6 +91,11 @@ public class StudentController {
     private JFXButton saveBtn;
 
     @FXML
+    private TextField searchTxt;
+
+    List<StudentDTO> studentDTOList;
+
+    @FXML
     void backBtnOnAction(ActionEvent event) {
         StageController.changeScene("/view/dashboardForm.fxml", ancPane);
 
@@ -100,36 +108,51 @@ public class StudentController {
                 | genderCmb.getSelectionModel().getSelectedIndex() == -1) {
             NotificationController.ErrorMasseage("Please fill all empty fields !");
 
-            try {
 
-                boolean idDeleted = service.deleteStudent(new StudentDTO(
-                        studentIdTxt.getText(),
-                        nameTxt.getText(),
-                        addressTxt.getText(),
-                        contactTxt.getText(),
-                        dobTxt.getValue().toString(),
-                        genderCmb.getSelectionModel().getSelectedItem()));
+        }else {
 
-                if (idDeleted) {
-                    NotificationController.animationMesseage("/assets/tick.gif", "Student Deleted Sucessfully", "Studemt");
-                    getAll();
-                    studentIdTxt.setText("");
-                    nameTxt.setText("");
-                    addressTxt.setText("");
-                    contactTxt.setText("");
-                    dobTxt.setValue(null);
-                    genderCmb.setValue(null);
+            if (DataValidateController.nameValidate(nameTxt.getText()) & DataValidateController.addressValidate(addressTxt.getText())
+        & DataValidateController.contactCheck(contactTxt.getText())){
+                try {
 
-                    nameTxt.setStyle("-fx-border-color: black");
-                    studentIdTxt.setStyle("-fx-border-color: black");
-                    addressTxt.setStyle("-fx-border-color: black");
-                    contactTxt.setStyle("-fx-border-color: black");
-                } else {
-                    System.out.println("error");
+                    boolean idDeleted = service.deleteStudent(new StudentDTO(
+                            studentIdTxt.getText(),
+                            nameTxt.getText(),
+                            addressTxt.getText(),
+                            contactTxt.getText(),
+                            dobTxt.getValue().toString(),
+                            genderCmb.getSelectionModel().getSelectedItem()));
+
+                    if (idDeleted) {
+                        NotificationController.animationMesseage("/assets/tick.gif", "Student Deleted Sucessfully", "Studemt");
+                        getAll();
+                        studentIdTxt.setText("");
+                        nameTxt.setText("");
+                        addressTxt.setText("");
+                        contactTxt.setText("");
+                        dobTxt.setValue(null);
+                        genderCmb.setValue(null);
+
+                        nameTxt.setStyle("-fx-border-color: black");
+                        studentIdTxt.setStyle("-fx-border-color: black");
+                        addressTxt.setStyle("-fx-border-color: black");
+                        contactTxt.setStyle("-fx-border-color: black");
+
+                        updateBtn.setDisable(true);
+                        deleteBtn.setDisable(true);
+
+
+                    } else {
+                        System.out.println("error");
+                    }
+                }catch (Exception e){
+                    System.out.println();
                 }
-            }catch (Exception e){
-                System.out.println();
+            }else{
+                NotificationController.ErrorMasseage("please validate all fields");
             }
+
+
         }
 
 
@@ -137,52 +160,69 @@ public class StudentController {
 
     @FXML
     void saveBtnOnAction(ActionEvent event) {
+        for (StudentDTO studentDTO : studentDTOList) {
+            if (studentIdTxt.getText().equals(studentDTO.getStudentId())){
+                NotificationController.ErrorMasseage("This id is already exits !");
+                return;
+            }
+        }
 
         if (studentIdTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | addressTxt.getText().isEmpty() | contactTxt.getText().isEmpty() | dobTxt.getEditor().getText().isEmpty()
                 | genderCmb.getSelectionModel().isEmpty()) {
             NotificationController.ErrorMasseage("Please fill all empty fields !");
         }else{
-            try {
-                boolean isSaved = service.saveStudent(new StudentDTO(
-                        studentIdTxt.getText(),
-                        nameTxt.getText(),
-                        addressTxt.getText(),
-                        contactTxt.getText(),
 
-                        dobTxt.getValue().toString(),
-                        genderCmb.getSelectionModel().getSelectedItem()
-                ));
+            if (DataValidateController.nameValidate(nameTxt.getText()) & DataValidateController.addressValidate(addressTxt.getText())
+            &DataValidateController.contactCheck(contactTxt.getText())){
+                try {
+                    boolean isSaved = service.saveStudent(new StudentDTO(
+                            studentIdTxt.getText(),
+                            nameTxt.getText(),
+                            addressTxt.getText(),
+                            contactTxt.getText(),
 
-                if (isSaved) {
-                    NotificationController.animationMesseage("/assets/tick.gif", "Student Saved Sucessfully", "Studemt");
-                    getAll();
-                    studentIdTxt.setText("");
-                    nameTxt.setText("");
-                    addressTxt.setText("");
-                    contactTxt.setText("");
-                    dobTxt.setValue(null);
-                    genderCmb.setValue(null);
+                            dobTxt.getValue().toString(),
+                            genderCmb.getSelectionModel().getSelectedItem()
+                    ));
 
-                    nameTxt.setStyle("-fx-border-color: black");
-                    studentIdTxt.setStyle("-fx-border-color: black");
-                    addressTxt.setStyle("-fx-border-color: black");
-                    contactTxt.setStyle("-fx-border-color: black");
+                    if (isSaved) {
+                        NotificationController.animationMesseage("/assets/tick.gif", "Student Saved Sucessfully", "Studemt");
+                        getAll();
+                        studentIdTxt.setText("");
+                        nameTxt.setText("");
+                        addressTxt.setText("");
+                        contactTxt.setText("");
+                        dobTxt.setValue(null);
+                        genderCmb.setValue(null);
 
-                } else {
-                    System.out.println("not saved");
+                        nameTxt.setStyle("-fx-border-color: black");
+                        studentIdTxt.setStyle("-fx-border-color: black");
+                        addressTxt.setStyle("-fx-border-color: black");
+                        contactTxt.setStyle("-fx-border-color: black");
+
+                        updateBtn.setDisable(true);
+                        deleteBtn.setDisable(true);
+
+
+                    } else {
+                        System.out.println("not saved");
+                    }
+                }catch (Exception e){
+                    System.out.println();
                 }
-            }catch (Exception e){
-                System.out.println();
+            }else{
+                NotificationController.ErrorMasseage("please validate all fields");
             }
 
+
         }
-
-
 
     }
 
     @FXML
     void tblOnAction(MouseEvent event) {
+        updateBtn.setDisable(false);
+        deleteBtn.setDisable(false);
         TablePosition pos = studentTbl.getSelectionModel().getSelectedCells().get(0);
         int row = pos.getRow();
         ObservableList<TableColumn<StudentTM, ?>> columns = studentTbl.getColumns();
@@ -202,46 +242,58 @@ public class StudentController {
         if (studentIdTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | addressTxt.getText().isEmpty() | contactTxt.getText().isEmpty() | dobTxt.getEditor().getText().isEmpty()
                 | genderCmb.getSelectionModel().getSelectedIndex() == -1) {
             NotificationController.ErrorMasseage("Please fill all empty fields !");
-        }
+        }else{
+            if (DataValidateController.nameValidate(nameTxt.getText()) & DataValidateController.addressValidate(addressTxt.getText())
+        & DataValidateController.contactCheck(contactTxt.getText())){
+                try {
+                    boolean isUpdated = service.updateStudent(
+                            new StudentDTO(
+                                    studentIdTxt.getText(),
+                                    nameTxt.getText(),
+                                    addressTxt.getText(),
+                                    contactTxt.getText(),
+                                    dobTxt.getValue().toString(),
+                                    genderCmb.getSelectionModel().getSelectedItem()));
 
-        try {
-            boolean isUpdated = service.updateStudent(
-                    new StudentDTO(
-                            studentIdTxt.getText(),
-                            nameTxt.getText(),
-                            addressTxt.getText(),
-                            contactTxt.getText(),
-                            dobTxt.getValue().toString(),
-                            genderCmb.getSelectionModel().getSelectedItem()));
+                    if (isUpdated) {
+                        NotificationController.animationMesseage("/assets/tick.gif", "Student Updated Sucessfully", "Studemt");
+                        getAll();
+                        studentIdTxt.setText("");
+                        nameTxt.setText("");
+                        addressTxt.setText("");
+                        contactTxt.setText("");
+                        dobTxt.setValue(null);
+                        genderCmb.setValue(null);
 
-            if (isUpdated) {
-                NotificationController.animationMesseage("/assets/tick.gif", "Student Updated Sucessfully", "Studemt");
-                getAll();
-                studentIdTxt.setText("");
-                nameTxt.setText("");
-                addressTxt.setText("");
-                contactTxt.setText("");
-                dobTxt.setValue(null);
-                genderCmb.setValue(null);
+                        nameTxt.setStyle("-fx-border-color: black");
+                        studentIdTxt.setStyle("-fx-border-color: black");
+                        addressTxt.setStyle("-fx-border-color: black");
+                        contactTxt.setStyle("-fx-border-color: black");
 
-                nameTxt.setStyle("-fx-border-color: black");
-                studentIdTxt.setStyle("-fx-border-color: black");
-                addressTxt.setStyle("-fx-border-color: black");
-                contactTxt.setStyle("-fx-border-color: black");
-            } else {
-                System.out.println("not");
+                        updateBtn.setDisable(true);
+                        deleteBtn.setDisable(true);
+
+
+                    } else {
+                        System.out.println("not");
+                    }
+
+                }catch (Exception e){
+                    System.out.println();
+                }
+
+            }else {
+                NotificationController.ErrorMasseage("please validate all fields");
             }
-
-        }catch (Exception e){
-            System.out.println();
         }
+
 
 
 
     }
 
     void getAll() {
-        List<StudentDTO> studentDTOList = service.getAllStudents();
+        studentDTOList = service.getAllStudents();
         ObservableList<StudentTM> list = FXCollections.observableArrayList();
         for (StudentDTO studentDTO : studentDTOList) {
             list.add(new StudentTM(
@@ -265,74 +317,66 @@ public class StudentController {
         contactCol.setCellValueFactory(new PropertyValueFactory<>("conatct"));
         dobCol.setCellValueFactory(new PropertyValueFactory<>("dob"));
         genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
-
-
     }
 
-    public void nameKeyTyped(KeyEvent keyEvent) {
-        boolean isIdValid = DataValidateController.nameValidate(nameTxt.getText());
 
-        saveBtn.setDisable(!isIdValid | contactTxt.getText().isEmpty() | addressTxt.getText().isEmpty() | studentIdTxt.getText().isEmpty()|nameTxt.getText().isEmpty());
-        updateBtn.setDisable(!isIdValid | contactTxt.getText().isEmpty() | addressTxt.getText().isEmpty() | studentIdTxt.getText().isEmpty()|nameTxt.getText().isEmpty());
-        deleteBtn.setDisable(!isIdValid | contactTxt.getText().isEmpty() | addressTxt.getText().isEmpty() | studentIdTxt.getText().isEmpty()|nameTxt.getText().isEmpty());
-
-        if (isIdValid) {
-            nameTxt.setStyle("-fx-border-color: green");
-        } else {
-            nameTxt.setStyle("-fx-border-color: red");
+    @FXML
+    void searchTable(KeyEvent event) {
+        String searchValue = searchTxt.getText().trim();
+        ObservableList<StudentTM> obList= FXCollections.observableArrayList();
+        List<StudentDTO> load = service.getAllStudents();
+        for (StudentDTO studentDTO : load) {
+            obList.add(new StudentTM(studentDTO.getStudentId(),studentDTO.getName(),studentDTO.getAddress(),studentDTO.getConatct(),studentDTO.getDob(),studentDTO.getGender()));
         }
-    }
 
-    public void addressKeyTyped(KeyEvent keyEvent) {
-        boolean isIdValid = DataValidateController.addressValidate(addressTxt.getText());
-        saveBtn.setDisable(!isIdValid | contactTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | studentIdTxt.getText().isEmpty()|addressTxt.getText().isEmpty());
-        updateBtn.setDisable(!isIdValid | contactTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | studentIdTxt.getText().isEmpty()|addressTxt.getText().isEmpty());
-        deleteBtn.setDisable(!isIdValid | contactTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | studentIdTxt.getText().isEmpty()|addressTxt.getText().isEmpty());
-        if (isIdValid) {
-            addressTxt.setStyle("-fx-border-color: green");
+        if (!searchValue.isEmpty()) {
+            ObservableList<StudentTM> filteredData = obList.filtered(new Predicate<StudentTM>() {
+                @Override
+                public boolean test(StudentTM studentTM) {
+                    return String.valueOf(studentTM.getStudentId()).toLowerCase().contains(searchValue.toLowerCase());
+                }
+            });
+            studentTbl.setItems(filteredData);
         } else {
-            addressTxt.setStyle("-fx-border-color: red");
+            studentTbl.setItems(obList);
         }
+
     }
 
-    public void studentIdKeytyped(KeyEvent keyEvent) {
-        boolean isIdValid = DataValidateController.studentIdValidate(studentIdTxt.getText());
 
-        saveBtn.setDisable(!isIdValid | contactTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | addressTxt.getText().isEmpty()|studentIdTxt.getText().isEmpty());
-        updateBtn.setDisable(!isIdValid | contactTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | addressTxt.getText().isEmpty()|studentIdTxt.getText().isEmpty());
-        deleteBtn.setDisable(!isIdValid | contactTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | addressTxt.getText().isEmpty()|studentIdTxt.getText().isEmpty());
-
-        if (isIdValid) {
-           studentIdTxt.setStyle("-fx-border-color: green");
-        } else {
-            studentIdTxt.setStyle("-fx-border-color: red");
+    @FXML
+    void searchIconClickOnAction(MouseEvent event) {
+        for (StudentDTO studentDTO : studentDTOList) {
+            if(!searchTxt.getText().equals(studentDTO.getStudentId())){
+                if (searchTxt.getText().isEmpty()){
+                }else {
+                    NotificationController.ErrorMasseage("please enter a valid student id to check !");
+                    return;
+                }
+            }
         }
-    }
+        if (searchTxt.getText().isEmpty()){
+            NotificationController.ErrorMasseage("please enter a student id to check !");
+        }else {
+            try {
+                StudentDTO studentDTO= (StudentDTO) service.searchStudent(searchTxt.getText());
+                studentIdTxt.setText(studentDTO.getStudentId());
+                nameTxt.setText(studentDTO.getName());
+                addressTxt.setText(studentDTO.getAddress());
+                contactTxt.setText(studentDTO.getConatct());
+                dobTxt.setValue(LocalDate.parse(studentDTO.getDob()));
+                genderCmb.setValue(studentDTO.getGender());
 
-    public void contactKeTyped(KeyEvent keyEvent) {
-        boolean isIdValid = DataValidateController.contactCheck(contactTxt.getText());
-
-        saveBtn.setDisable(!isIdValid | studentIdTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | addressTxt.getText().isEmpty()|contactTxt.getText().isEmpty());
-        updateBtn.setDisable(!isIdValid | studentIdTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | addressTxt.getText().isEmpty()|contactTxt.getText().isEmpty());
-        deleteBtn.setDisable(!isIdValid | studentIdTxt.getText().isEmpty() | nameTxt.getText().isEmpty() | addressTxt.getText().isEmpty()|contactTxt.getText().isEmpty());
-
-        if (isIdValid) {
-            contactTxt.setStyle("-fx-border-color: green");
-        } else {
-            contactTxt.setStyle("-fx-border-color: red");
+            }catch (Exception e){
+                System.out.println();
+            }
         }
-    }
 
-    public void genderKeyTyped(KeyEvent keyEvent) {
-    }
-
-    public void dobKeyTyped(KeyEvent keyEvent) {
 
     }
 
     @FXML
     void initialize() {
-        saveBtn.setDisable(true);
         updateBtn.setDisable(true);
         deleteBtn.setDisable(true);
         genderCmb.getItems().addAll("Male", "Female");
