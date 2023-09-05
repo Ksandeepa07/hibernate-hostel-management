@@ -79,6 +79,15 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     }
 
+    @Override
+    public int countIds() {
+        Query<Long> query = session.createQuery("SELECT COUNT (r.reservationId) from Reservation as r",Long.class);
+        Long count=query.uniqueResult();
+        int newCount= Math.toIntExact(count);
+        System.out.println(count);
+        return newCount;
+    }
+
     private static String splitOrderId(String currentId) {
         if (currentId != null) {
             String[] strings = currentId.split("Res-");

@@ -73,29 +73,34 @@ public class ReservationController {
 
     @FXML
     void addBtnOnAction(ActionEvent event) {
-        boolean isSaved = service.saveReservation(new ReservationDTO(
-                resIdTxt.getText(),
-                LocalDate.now(),
-                studentIdCmb.getValue(),
-                roomTypeIdCmb.getValue(),
-                statuscmb.getValue()
-        ));
+        if(resIdTxt.getText().isEmpty()|studentIdCmb.getSelectionModel().getSelectedIndex() == -1|roomTypeIdCmb.getSelectionModel().getSelectedIndex() == -1|
+        statuscmb.getSelectionModel().getSelectedIndex() == -1){
+            NotificationController.ErrorMasseage("please fill all empty fields !");
 
-        System.out.println(isSaved);
+        }else {
+            boolean isSaved = service.saveReservation(new ReservationDTO(
+                    resIdTxt.getText(),
+                    LocalDate.now(),
+                    studentIdCmb.getValue(),
+                    roomTypeIdCmb.getValue(),
+                    statuscmb.getValue()
+            ));
 
-        if (isSaved) {
-            NotificationController.animationMesseage("/assets/tick.gif", "Reservation Added Sucessfully", "Reservation");
-            getAll();
-            generateNextResvationId();
-            resIdTxt.setText("");
-            dateLbl.setText("");
-            studentIdCmb.setValue(null);
-            roomTypeIdCmb.setValue(null);
-            statuscmb.setValue(null);
+            System.out.println(isSaved);
 
-        } else {
-            System.out.println("not saved");
+            if (isSaved) {
+                NotificationController.animationMesseage("/assets/tick.gif", "Reservation Added Sucessfully", "Reservation");
+                getAll();
+                generateNextResvationId();
+                studentIdCmb.setValue(null);
+                roomTypeIdCmb.setValue(null);
+                statuscmb.setValue(null);
+
+            } else {
+                System.out.println("not saved");
+            }
         }
+
 
     }
 
@@ -111,11 +116,12 @@ public class ReservationController {
         if (isDeleted) {
             NotificationController.animationMesseage("/assets/tick.gif", "Reservation Deleted Sucessfully", "Reservation");
             getAll();
-            resIdTxt.setText("");
-            dateLbl.setText("");
             studentIdCmb.setValue(null);
             roomTypeIdCmb.setValue(null);
             statuscmb.setValue(null);
+
+            updateBtn.setDisable(true);
+            delereBtn.setDisable(true);
 
         } else {
             System.out.println("not deleted");
@@ -125,6 +131,8 @@ public class ReservationController {
 
     @FXML
     void tblOnAction(MouseEvent event) {
+        updateBtn.setDisable(false);
+        delereBtn.setDisable(false);
         TablePosition pos = reservationTbl.getSelectionModel().getSelectedCells().get(0);
         int row = pos.getRow();
         ObservableList<TableColumn<ReservationTM, ?>> columns = reservationTbl.getColumns();
@@ -150,11 +158,12 @@ public class ReservationController {
         if (isUpdated) {
             NotificationController.animationMesseage("/assets/tick.gif", "Reservation Updated Sucessfully", "Reservation");
             getAll();
-            resIdTxt.setText("");
-            dateLbl.setText("");
             studentIdCmb.setValue(null);
             roomTypeIdCmb.setValue(null);
             statuscmb.setValue(null);
+
+            updateBtn.setDisable(true);
+            delereBtn.setDisable(true);
         } else {
             System.out.println("not");
         }
@@ -232,6 +241,8 @@ public class ReservationController {
         loadRoomTypeIds();
         generateNextResvationId();
         dateLbl.setText(LocalDate.now().toString());
+        updateBtn.setDisable(true);
+        delereBtn.setDisable(true);
         statuscmb.getItems().addAll("Paid", "Not Paid");
         assert addBtn != null : "fx:id=\"addBtn\" was not injected: check your FXML file 'reservationForm.fxml'.";
         assert ancPane != null : "fx:id=\"ancPane\" was not injected: check your FXML file 'reservationForm.fxml'.";

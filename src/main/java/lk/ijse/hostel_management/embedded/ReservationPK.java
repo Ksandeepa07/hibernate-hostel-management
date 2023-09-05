@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Embeddable
 public class ReservationPK implements Serializable {
 
-    @Column(name = "student_id")
+    @Column(name = "student_id",unique = true)
     private String studentId;
 
     @Column(name = "room_type_id")

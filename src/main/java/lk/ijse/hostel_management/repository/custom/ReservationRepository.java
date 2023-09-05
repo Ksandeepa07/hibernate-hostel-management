@@ -8,6 +8,6 @@ import org.hibernate.Session;
 public interface ReservationRepository extends CrudRepository<Reservation,String,Integer> {
     void setSession(Session session);
     Long countResId(String resId);
-
     String generateNextResevationId();
+    int countIds();
 }

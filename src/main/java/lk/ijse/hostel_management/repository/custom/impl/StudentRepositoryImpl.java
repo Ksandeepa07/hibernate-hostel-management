@@ -62,4 +62,13 @@ public class StudentRepositoryImpl implements StudentRepository {
         System.out.println(list);
         return list;
     }
+
+    @Override
+    public int countIds() {
+        Query<Long> query = session.createQuery("SELECT COUNT (s.studentId) from Student as s",Long.class);
+        Long count=query.uniqueResult();
+        int newCount= Math.toIntExact(count);
+        System.out.println(count);
+        return newCount;
+    }
 }

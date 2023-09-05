@@ -76,4 +76,13 @@ public class RoomRepositoryimpl implements RoomRepository {
        List<String> list=query.getResultList();
        return list;
     }
+
+    @Override
+    public int countIds() {
+        Query<Long> query = session.createQuery("SELECT COUNT (r.roomId) from Room as r",Long.class);
+        Long count=query.uniqueResult();
+        int newCount= Math.toIntExact(count);
+        System.out.println(count);
+        return newCount;
+    }
 }

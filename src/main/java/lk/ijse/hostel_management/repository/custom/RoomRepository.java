@@ -9,4 +9,5 @@ import java.util.List;
 public interface RoomRepository extends CrudRepository<Room,String,Integer> {
     void setSession(Session session);
     List<String> loadRoomTypeIds();
+    int countIds();
 }

@@ -259,8 +259,26 @@ public class DashboardController {
 //        }
     }
 
+    void countStudentIds(){
+        int ids=homeService.countStudentIds();
+        type1QtyLbl.setText(String.valueOf(ids));
+    }
+
+    void countRoomIds(){
+        int ids=homeService.countRoomIds();
+        type1QtyLbl2.setText(String.valueOf(ids));
+    }
+
+    void countResIds(){
+        int ids=homeService.countResIds();
+        type1QtyLbl13.setText(String.valueOf(ids));
+    }
+
     @FXML
     void initialize() {
+        countStudentIds();
+        countRoomIds();
+        countResIds();
         System.out.println("User Id :"+LoginController.userId);
         getAllRooms();
         TimeController.timeNow(timeLbl,dateLbl);

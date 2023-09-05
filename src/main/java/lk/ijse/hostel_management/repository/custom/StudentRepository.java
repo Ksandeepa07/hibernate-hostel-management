@@ -9,4 +9,5 @@ import java.util.List;
 public interface StudentRepository extends CrudRepository<Student,String,Integer> {
     void setSession(Session session);
     List<String> loadStudentIds();
+    int countIds();
 }

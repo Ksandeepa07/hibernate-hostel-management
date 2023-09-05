@@ -7,4 +7,9 @@ import java.util.List;
 
 public interface HomeService  extends SuperService {
     List<RoomDTO> getAllRooms();
+    int countStudentIds();
+
+    int countRoomIds();
+
+    int countResIds();
 }
